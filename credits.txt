@@ -1,0 +1,47 @@
+Credits :
+www.haneefputtur.com
+www.uwamp.com
+www.wordpress.org
+www.digixonline.com
+www.ThemeGrill.com
+###########################
+Wordpress
+Admin Interface 
+Link : http://localhost:9321/wp-admin
+Username : haneef
+Password : haneef
+###########################
+MYSQL 
+Interface : http://localhost:9321/mysql/
+user : root
+password : root
+MySQL Service Port : 9322
+###########################
+
+Support :: http://haneefputtur.com/portapress.html
+
+############################
+Available Macro in setting: 
+
+	{TEMPPATH}			= UwAmp\temp
+	{APACHEPATH} 			= UwAmp\bin\apache
+	{DOCUMENTPATH} 			= UwAmp\www
+	{PHPAPPS}			= UwAMp\phpapps
+	{PHPPATH} 			= UwAmp\bin\php\CURRENT PHP IN UWAMP CONTROL\
+	{PHPAPACHE2FILE} 		= UwAmp\bin\php\CURRENT PHP IN UWAMP CONTROL\CURRENT apache2.dll
+	{PHPEXTPATH} 			= UwAmp\bin\php\CURRENT PHP IN UWAMP CONTROL\ext
+	{PHPZENDPATH} 			= UwAmp\bin\php\CURRENT PHP IN UWAMP CONTROL\zend_ext
+	{PHPMODULENAME}			= Module name of current php version
+	{LISTEN_VIRTUAL_HOST_PORT}	= Apache Listens ports
+
+	{MYSQLPATH}			= UwAmp\bin\database\mysql\
+	{MYSQLBINPATH}			= UwAmp\bin\database\mysql\bin
+	{MYSQLDATAPATH}			= UwAmp\bin\database\mysql\data
+
+	{ONLINE_MODE}			= Require all granted
+			OR
+					= Require local
+
+if ONLINE_MODE is set to Online the server is available for all IP
+if ONLINE_MODE is set to Offline the server is available just for 127.0.0.1
+
