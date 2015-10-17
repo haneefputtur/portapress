@@ -11,7 +11,7 @@ Are you interested in learning wordpress? Feeling difficult ? Hard to configure?
 <li>100% Spyware / Virus Free &#8211; GUARANTEED</li>
 <li>100% Pre Configured</li>
 <li>Explore wordpress with no Limits.</li>
-<li>Any issues please leave your comments below.</li>
+<li>Any issues please leave your comments at : http://haneefputtur.com/portapress.html</li>
 </ul>
 <strong>Credits :</strong>
 <li>www.haneefputtur.com</li>
