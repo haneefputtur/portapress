@@ -11,9 +11,9 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php do_action( 'spacious_before_post_content' ); ?>
 	<header class="entry-header">
-		<h1 class="entry-title">
+		<h2 class="entry-title">
 			<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute();?>"><?php the_title(); ?></a>
-		</h1><!-- .entry-title -->
+		</h2><!-- .entry-title -->
 	</header>
 
 	<div class="post-image-content-wrap clearfix">

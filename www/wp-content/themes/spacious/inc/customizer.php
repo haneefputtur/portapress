@@ -17,13 +17,13 @@ function spacious_customize_register($wp_customize) {
       public function render_content() {
          //Add Theme instruction, Support Forum, Demo Link, Rating Link
          $important_links = array(
-            'upgrade' => array(
-               'link' => esc_url('http://themegrill.com/themes/spacious-pro/'),
-               'text' => __('Upgrade to Pro', 'spacious'),
+            'theme-info' => array(
+               'link' => esc_url('http://themegrill.com/themes/spacious/'),
+               'text' => __('Theme Info', 'spacious'),
             ),
             'support' => array(
                'link' => esc_url('http://themegrill.com/support-forum/'),
-               'text' => __('Free Support', 'spacious'),
+               'text' => __('Support Forum', 'spacious'),
             ),
             'documentation' => array(
                'link' => esc_url('http://themegrill.com/theme-instruction/spacious/'),
@@ -34,7 +34,7 @@ function spacious_customize_register($wp_customize) {
                'text' => __('View Demo', 'spacious'),
             ),
             'rating' => array(
-               'link' => esc_url('http://wordpress.org/themes/spacious/'),
+               'link' => esc_url('http://wordpress.org/support/view/theme-reviews/spacious?filter=5'),
                'text' => __('Rate this theme', 'spacious'),
             ),
          );
@@ -57,8 +57,8 @@ function spacious_customize_register($wp_customize) {
    }
 
    $wp_customize->add_section('spacious_important_links', array(
-      'priority' => 700,
-      'title' => __('About Spacious', 'spacious'),
+      'priority' => 1,
+      'title' => __('Spacious Important Links', 'spacious'),
    ));
 
    /**
@@ -693,10 +693,47 @@ function spacious_customizer_js() {
 
    wp_localize_script( 'spacious_customizer_script', 'spacious_customizer_obj', array(
 
-      'info' => __( 'Theme Info', 'spacious' ),
       'pro' => __('View PRO version','spacious')
 
    ) );
 }
 add_action( 'customize_controls_enqueue_scripts', 'spacious_customizer_js' );
+
+/*
+ * Custom Scripts
+ */
+add_action( 'customize_controls_print_footer_scripts', 'spacious_customizer_custom_scripts' );
+
+function spacious_customizer_custom_scripts() { ?>
+<style>
+   	/* Theme Instructions Panel CSS */
+	li#accordion-section-spacious_important_links h3.accordion-section-title, li#accordion-section-spacious_important_links h3.accordion-section-title:focus { background-color: #0FBE7C !important; color: #fff !important; }
+	li#accordion-section-spacious_important_links h3.accordion-section-title:hover { background-color: #0FBE7C !important; color: #fff !important; }
+	li#accordion-section-spacious_important_links h3.accordion-section-title:after { color: #fff !important; }
+	/* Upsell button CSS */
+	.themegrill-pro-info,
+	.customize-control-spacious-important-links a {
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#8fc800+0,8fc800+100;Green+Flat+%232 */
+		background: #008EC2;
+		color: #fff;
+		display: block;
+		margin: 15px 0 0;
+		padding: 5px 0;
+		text-align: center;
+		font-weight: 600;
+	}
+
+	.customize-control-spacious-important-links a{
+		padding: 8px 0;
+	}
+
+	.themegrill-pro-info:hover,
+	.customize-control-spacious-important-links a:hover {
+		color: #ffffff;
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#006e2e+0,006e2e+100;Green+Flat+%233 */
+		background:#2380BA;
+	}
+</style>
+<?php
+}
 ?>

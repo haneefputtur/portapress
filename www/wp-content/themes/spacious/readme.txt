@@ -16,7 +16,6 @@ Resources packed within the theme.
 * Image in the screenshot is from public domain http://unsplash.com/ link: unsplash.com/post/53469911317/download-by-aleks-dorohovich
 * HTML5 Shiv @afarkas @jdalton @jon_neal @rem | MIT/GPL2 Licensed
 * The script jquery.cycle.all.js is dual licensed under GPL & MIT
-* Options Framework by WP Theming licensed under the GPLv2 license (http://www.gnu.org/licenses/gpl-2.0.html)
 * Other custom js files are our own creation and is licensed under the same license as this theme.
 
 All other resources and theme elements are licensed under the [GNU GPL](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html), version 2 or later.
@@ -35,7 +34,7 @@ Get theme instruction at http://themegrill.com/theme-instruction/spacious
 Get free support at http://themegrill.com/support-forum
 
 = Theme Features Usage =
-All available options can be used from Appearance->Theme Options
+All available options can be used from Appearance->Customize
 
 /**********************************************************/
 
@@ -45,7 +44,39 @@ and we will include it within the theme from next version update.
 
 /**********************************************************/
 
-== CHANGE LOG ==
+== Changelog ==
+= Version 1.4.0.1 =
+* Tweaks - HTML tags removed from the string translation.
+
+= Version 1.4.0 =
+* Tweaks - Updated theme tags as per new introduced tags
+* Tweaks - Introduced welcome page for theme.
+* Fix - Removed deprecated load() function used for slider-setting script.
+
+= Version 1.3.9 =
+* Fix - WooCommerce shop error fixed.
+* Fix - Box and Wide at 978px Layout issue on Tab is fixed.
+* Feature - Jquery cycle plugin for slider upgraded to Jquery cycle2 v2.1.6.
+* Feature - Added Swipe feature on slider for touch devices.
+
+= Version 1.3.8 =
+* Fix - Slider disable in blog page bug fixed.
+* Tweaks - Theme information is properly organized in Customize panel.
+* Tweaks - Language file updated.
+* Feature - Theme is now compatible with WooCommerce.
+* Feature - Primary Color hover effect is added.
+
+= Version 1.3.7 =
+* Content width is now adjusted with site layout choosed.
+* Removed backward compatibility for WordPress title tag.
+
+= Version 1.3.6 =
+* SEO Optimization
+
+= Version 1.3.5 =
+* Updated HTML5Shiv script to the latest version 3.7.3
+* Updated Genericons to the latest version 3.4.1
+
 = Version 1.3.4.1 =
 * Minor bug fixed
 

@@ -10,7 +10,7 @@
 
 <div id="secondary">
 	<?php do_action( 'spacious_before_sidebar' ); ?>
-		<?php 
+		<?php
 			if( is_page_template( 'page-templates/contact.php' ) ) {
 				$sidebar = 'spacious_contact_page_sidebar';
 			}
@@ -26,14 +26,14 @@
 			</aside>
 
 			<aside id="archives" class="widget">
-				<h1 class="widget-title"><?php _e( 'Archives', 'spacious' ); ?></h1>
+				<h3 class="widget-title"><?php _e( 'Archives', 'spacious' ); ?></h3>
 				<ul>
 					<?php wp_get_archives( array( 'type' => 'monthly' ) ); ?>
 				</ul>
 			</aside>
 
 			<aside id="meta" class="widget">
-				<h1 class="widget-title"><?php _e( 'Meta', 'spacious' ); ?></h1>
+				<h3 class="widget-title"><?php _e( 'Meta', 'spacious' ); ?></h3>
 				<ul>
 					<?php wp_register(); ?>
 					<li><?php wp_loginout(); ?></li>

@@ -15,9 +15,9 @@
 	if( !is_single() ) {
 	?>
 	<header class="entry-header">
-	<h1 class="entry-title">
+	<h2 class="entry-title">
 		<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute();?>"><?php the_title(); ?></a>
-	</h1><!-- .entry-title -->
+	</h2><!-- .entry-title -->
 	</header>
 	<?php
 	}

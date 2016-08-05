@@ -16,7 +16,35 @@
  * Set the content width based on the theme's design and stylesheet.
  */
 if ( ! isset( $content_width ) )
-	$content_width = 700;
+	$content_width = 750;
+
+/**
+ * $content_width global variable adjustment as per layout option.
+ */
+function spacious_content_width() {
+   global $post;
+   global $content_width;
+
+   if( $post ) { $layout_meta = get_post_meta( $post->ID, 'spacious_page_layout', true ); }
+   if( empty( $layout_meta ) || is_archive() || is_search() ) { $layout_meta = 'default_layout'; }
+   $spacious_default_layout = spacious_options( 'default_layout', 'right_sidebar' );
+
+   if ( $layout_meta == 'default_layout' ) {
+      if ( ( spacious_options( 'spacious_site_layout', 'box_1218px' ) == 'box_978px' ) || ( spacious_options( 'spacious_site_layout', 'box_1218px' ) == 'wide_978px' ) ) {
+         if ( $spacious_default_layout == 'no_sidebar_full_width' ) { $content_width = 978; /* pixels */ }
+         else { $content_width = 642; /* pixels */ }
+      }
+      elseif ( $spacious_default_layout == 'no_sidebar_full_width' ) { $content_width = 1218; /* pixels */ }
+      else { $content_width = 750; /* pixels */ }
+   }
+   elseif ( ( spacious_options( 'spacious_site_layout', 'box_1218px' ) == 'box_978px' ) || ( spacious_options( 'spacious_site_layout', 'box_1218px' ) == 'wide_978px' ) ) {
+      if ( $layout_meta == 'no_sidebar_full_width' ) { $content_width = 978; /* pixels */ }
+      else { $content_width = 642; /* pixels */ }
+   }
+   elseif ( $layout_meta == 'no_sidebar_full_width' ) { $content_width = 1218; /* pixels */ }
+   else { $content_width = 750; /* pixels */ }
+}
+add_action( 'template_redirect', 'spacious_content_width' );
 
 add_action( 'after_setup_theme', 'spacious_setup' );
 /**
@@ -118,23 +146,18 @@ require_once( SPACIOUS_ADMIN_DIR . '/meta-boxes.php' );
 /** Load Widgets and Widgetized Area */
 require_once( SPACIOUS_WIDGETS_DIR . '/widgets.php' );
 
-/*
- * Adding Admin Menu for theme options
+/**
+ * Detect plugin. For use on Front End only.
  */
-add_action( 'admin_menu', 'spacious_theme_options_menu' );
-function spacious_theme_options_menu() {
-   add_theme_page( 'Theme Options', 'Theme Options', 'manage_options', 'spacious-theme-options', 'spacious_theme_options' );
-}
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
-function spacious_theme_options() {
-   if ( !current_user_can( 'manage_options' ) )  {
-      wp_die( __( 'You do not have sufficient permissions to access this page.', 'spacious' ) );
-   } ?>
-   <h1 class="spacious-theme-options"><?php _e( 'Theme Options', 'spacious' ); ?></h1>
-   <?php
-   printf( __('<p style="font-size: 16px; max-width: 800px";>As our themes are hosted on WordPress repository, we need to follow the WordPress theme guidelines and as per the new guiedlines we have migrated all our Theme Options to Customizer.</p><p style="font-size: 16px; max-width: 800px";>We too think this is a better move in the long run. All the options are unchanged, it is just that they are moved to customizer. So, please use this <a href="%1$s">link</a> to customize your site. If you have any issues then do let us know via our <a href="%2$s">Contact form</a></p>', 'spacious'),
-      esc_url(admin_url( 'customize.php' ) ),
-      esc_url('http://themegrill.com/contact/')
-   );
+/**
+ * Assign the Spacious version to a variable.
+ */
+$theme            = wp_get_theme( 'spacious' );
+$spacious_version = $theme['Version'];
+
+/* Calling in the admin area for the Welcome Page */
+if ( is_admin() ) {
+	require get_template_directory() . '/inc/admin/class-spacious-admin.php';
 }
-?>

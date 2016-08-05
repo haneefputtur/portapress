@@ -17,9 +17,9 @@
 			<section class="error-404 not-found">
 				<div class="page-content">
 
-					<?php if ( ! dynamic_sidebar( 'spacious_error_404_page_sidebar' ) ) : ?>				
+					<?php if ( ! dynamic_sidebar( 'spacious_error_404_page_sidebar' ) ) : ?>
 						<header class="page-header">
-							<h1 class="page-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'spacious' ); ?></h1>
+							<h2 class="page-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'spacious' ); ?></h2>
 						</header>
 						<p><?php _e( 'It looks like nothing was found at this location. Try the search below.', 'spacious' ); ?></p>
 						<?php get_search_form(); ?>

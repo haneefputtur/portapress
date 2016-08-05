@@ -9,70 +9,6 @@
 
 /****************************************************************************************/
 
-// Backwards compatibility for older versions
-if ( ! function_exists( '_wp_render_title_tag' ) ) :
-
-   add_action( 'wp_head', 'spacious_render_title' );
-   function spacious_render_title() {
-      ?>
-      <title>
-      <?php
-      /**
-       * Print the <title> tag based on what is being viewed.
-       */
-      wp_title( '|', true, 'right' );
-      ?>
-      </title>
-      <?php
-   }
-
-   add_filter( 'wp_title', 'spacious_filter_wp_title' );
-   if ( ! function_exists( 'spacious_filter_wp_title' ) ) :
-      /**
-       * Modifying the Title
-       *
-       * Function tied to the wp_title filter hook.
-       * @uses filter wp_title
-       */
-      function spacious_filter_wp_title( $title ) {
-         global $page, $paged;
-
-         // Get the Site Name
-         $site_name = get_bloginfo( 'name' );
-
-         // Get the Site Description
-         $site_description = get_bloginfo( 'description' );
-
-         $filtered_title = '';
-
-         // For Homepage or Frontpage
-         if(  is_home() || is_front_page() ) {
-            $filtered_title .= $site_name;
-            if ( !empty( $site_description ) )  {
-               $filtered_title .= ' &#124; '. $site_description;
-            }
-         }
-         elseif( is_feed() ) {
-            $filtered_title = '';
-         }
-         else{
-            $filtered_title = $title . $site_name;
-         }
-
-         // Add a page number if necessary:
-         if( $paged >= 2 || $page >= 2 ) {
-            $filtered_title .= ' &#124; ' . sprintf( __( 'Page %s', 'spacious' ), max( $paged, $page ) );
-         }
-
-         // Return the modified title
-         return $filtered_title;
-      }
-   endif;
-
-endif;
-
-/****************************************************************************************/
-
 if ( ! function_exists( 'spacious_render_header_image' ) ) :
 /**
  * Shows the small info text on top header part
@@ -136,9 +72,8 @@ function spacious_featured_image_slider() {
 						<?php
 					}
 				}
-				?>
+				?> <nav id="controllers" class="clearfix"></nav>
 			</div>
-			<nav id="controllers" class="clearfix"></nav>
 		</section>
 
 		<?php
@@ -194,6 +129,9 @@ function spacious_header_title() {
 
 		elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
 			$spacious_header_title = __( 'Links', 'spacious' );
+
+		elseif ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) :
+			$spacious_header_title = woocommerce_page_title( false );
 
 		else :
 			$spacious_header_title = __( 'Archives', 'spacious' );

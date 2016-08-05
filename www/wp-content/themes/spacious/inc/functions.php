@@ -54,16 +54,18 @@ function spacious_scripts_styles_method() {
 		wp_enqueue_script( 'comment-reply' );
 
 	/**
-	 * Register JQuery cycle js file for slider.
+	 * Register JQuery cycle2 js file for slider.
 	 */
-	wp_register_script( 'jquery_cycle', SPACIOUS_JS_URL . '/jquery.cycle.all.min.js', array( 'jquery' ), '3.0.3', true );
+	wp_register_script( 'jquery_cycle', SPACIOUS_JS_URL . '/jquery.cycle2.min.js', array( 'jquery' ), '2.1.6', true );
+	wp_register_script( 'jquery-swipe', SPACIOUS_JS_URL . '/jquery.cycle2.swipe.min.js', array( 'jquery' ), false, true );
 
-   wp_register_style( 'google_fonts', '//fonts.googleapis.com/css?family=Lato' );
+	wp_register_style( 'google_fonts', '//fonts.googleapis.com/css?family=Lato' );
 
 	/**
 	 * Enqueue Slider setup js file.
 	 */
 	if ( is_home() || is_front_page() && spacious_options( 'spacious_activate_slider', '0' ) == '1' ) {
+		wp_enqueue_script( 'jquery-swipe' );
 		wp_enqueue_script( 'spacious_slider', SPACIOUS_JS_URL . '/spacious-slider-setting.js', array( 'jquery_cycle' ), false, true );
 	}
 	wp_enqueue_script( 'spacious-navigation', SPACIOUS_JS_URL . '/navigation.js', array( 'jquery' ), false, true );
@@ -76,17 +78,6 @@ function spacious_scripts_styles_method() {
 		wp_enqueue_script( 'html5', SPACIOUS_JS_URL . '/html5shiv.min.js', true );
 	}
 
-}
-
-add_action( 'admin_print_styles-appearance_page_options-framework', 'spacious_admin_styles' );
-/**
- * Enqueuing some styles.
- *
- * @uses wp_enqueue_style to register stylesheets.
- * @uses wp_enqueue_style to add styles.
- */
-function spacious_admin_styles() {
-	wp_enqueue_style( 'spacious_admin_style', SPACIOUS_ADMIN_CSS_URL. '/admin.css' );
 }
 
 /****************************************************************************************/
@@ -164,8 +155,8 @@ function spacious_body_class( $classes ) {
 	}
 
 	if( empty( $layout_meta ) || is_archive() || is_search() ) { $layout_meta = 'default_layout'; }
-	$spacious_default_layout = spacious_options( 'spacious_default_layout', 'right_sidebar' );
 
+	$spacious_default_layout = spacious_options( 'spacious_default_layout', 'right_sidebar' );
 	$spacious_default_page_layout = spacious_options( 'spacious_pages_default_layout', 'right_sidebar' );
 	$spacious_default_post_layout = spacious_options( 'spacious_single_posts_default_layout', 'right_sidebar' );
 
@@ -193,12 +184,6 @@ function spacious_body_class( $classes ) {
 	elseif( $layout_meta == 'no_sidebar_content_centered' ) { $classes[] = 'no-sidebar'; }
 
 
-	if( is_page_template( 'page-templates/blog-image-alternate-medium.php' ) ) {
-		$classes[] = 'blog-alternate-medium';
-	}
-	if( is_page_template( 'page-templates/blog-image-medium.php' ) ) {
-		$classes[] = 'blog-medium';
-	}
 	if ( spacious_options( 'spacious_archive_display_type', 'blog_large' ) == 'blog_medium_alternate' ) {
 		$classes[] = 'blog-alternate-medium';
 	}
@@ -238,8 +223,8 @@ function spacious_sidebar_select() {
 	}
 
 	if( empty( $layout_meta ) || is_archive() || is_search() ) { $layout_meta = 'default_layout'; }
-	$spacious_default_layout = spacious_options( 'spacious_default_layout', 'right_sidebar' );
 
+	$spacious_default_layout = spacious_options( 'spacious_default_layout', 'right_sidebar' );
 	$spacious_default_page_layout = spacious_options( 'spacious_pages_default_layout', 'right_sidebar' );
 	$spacious_default_post_layout = spacious_options( 'spacious_single_posts_default_layout', 'right_sidebar' );
 
@@ -278,6 +263,49 @@ function spacious_favicon() {
 	}
 }
 
+/**************************************************************************************/
+
+/**
+ * Change hex code to RGB
+ * Source: https://css-tricks.com/snippets/php/convert-hex-to-rgb/#comment-1052011
+ */
+function spacious_hex2rgb($hexstr) {
+	$int = hexdec($hexstr);
+	$rgb = array("red" => 0xFF & ($int >> 0x10), "green" => 0xFF & ($int >> 0x8), "blue" => 0xFF & $int);
+	$r = $rgb['red'];
+	$g = $rgb['green'];
+	$b = $rgb['blue'];
+
+	return "rgba($r,$g,$b, 0.85)";
+}
+
+/**
+ * Generate darker color
+ * Source: http://stackoverflow.com/questions/3512311/how-to-generate-lighter-darker-color-with-php
+ */
+function spacious_darkcolor($hex, $steps) {
+	// Steps should be between -255 and 255. Negative = darker, positive = lighter
+	$steps = max(-255, min(255, $steps));
+
+	// Normalize into a six character long hex string
+	$hex = str_replace('#', '', $hex);
+	if (strlen($hex) == 3) {
+		$hex = str_repeat(substr($hex,0,1), 2).str_repeat(substr($hex,1,1), 2).str_repeat(substr($hex,2,1), 2);
+	}
+
+	// Split into three parts: R, G and B
+	$color_parts = str_split($hex, 2);
+	$return = '#';
+
+	foreach ($color_parts as $color) {
+		$color   = hexdec($color); // Convert to decimal
+		$color   = max(0,min(255,$color + $steps)); // Adjust color
+		$return .= str_pad(dechex($color), 2, '0', STR_PAD_LEFT); // Make two char hex code
+	}
+
+	return $return;
+}
+
 /****************************************************************************************/
 
 add_action('wp_head', 'spacious_custom_css');
@@ -286,6 +314,8 @@ add_action('wp_head', 'spacious_custom_css');
  */
 function spacious_custom_css() {
 	$primary_color = spacious_options( 'spacious_primary_color', '#0FBE7C' );
+	$primary_opacity = spacious_hex2rgb($primary_color);
+	$primary_dark    = spacious_darkcolor($primary_color, -50);
 	$spacious_internal_css = '';
 	if( $primary_color != '#0FBE7C' ) {
 		$spacious_internal_css = ' blockquote { border-left: 3px solid '.$primary_color.'; }
@@ -296,16 +326,17 @@ function spacious_custom_css() {
 			.main-navigation ul li.current_page_item a, .main-navigation ul li:hover > a { color: '.$primary_color.'; }
 			.main-navigation ul li ul { border-top: 1px solid '.$primary_color.'; }
 			.main-navigation ul li ul li a:hover, .main-navigation ul li ul li:hover > a, .main-navigation ul li.current-menu-item ul li a:hover { color: '.$primary_color.'; }
-			.site-header .menu-toggle:hover { background: '.$primary_color.'; }
+			.site-header .menu-toggle:hover.entry-meta a.read-more:hover,#featured-slider .slider-read-more-button:hover,.call-to-action-button:hover,.entry-meta .read-more-link:hover,.spacious-button:hover, input[type="reset"]:hover, input[type="button"]:hover, input[type="submit"]:hover, button:hover { background: '.$primary_dark.'; }
 			.main-small-navigation li:hover { background: '.$primary_color.'; }
 			.main-small-navigation ul > .current_page_item, .main-small-navigation ul > .current-menu-item { background: '.$primary_color.'; }
 			.main-navigation a:hover, .main-navigation ul li.current-menu-item a, .main-navigation ul li.current_page_ancestor a, .main-navigation ul li.current-menu-ancestor a, .main-navigation ul li.current_page_item a, .main-navigation ul li:hover > a  { color: '.$primary_color.'; }
 			.small-menu a:hover, .small-menu ul li.current-menu-item a, .small-menu ul li.current_page_ancestor a, .small-menu ul li.current-menu-ancestor a, .small-menu ul li.current_page_item a, .small-menu ul li:hover > a { color: '.$primary_color.'; }
 			#featured-slider .slider-read-more-button { background-color: '.$primary_color.'; }
 			#controllers a:hover, #controllers a.active { background-color: '.$primary_color.'; color: '.$primary_color.'; }
+			.widget_service_block a.more-link:hover, .widget_featured_single_post a.read-more:hover,#secondary a:hover,logged-in-as:hover  a,.single-page p a:hover{ color: '.$primary_dark.'; }
 			.breadcrumb a:hover { color: '.$primary_color.'; }
 			.tg-one-half .widget-title a:hover, .tg-one-third .widget-title a:hover, .tg-one-fourth .widget-title a:hover { color: '.$primary_color.'; }
-			.pagination span { background-color: '.$primary_color.'; }
+			.pagination span ,.site-header .menu-toggle:hover{ background-color: '.$primary_color.'; }
 			.pagination a span:hover { color: '.$primary_color.'; border-color: .'.$primary_color.'; }
 			.widget_testimonial .testimonial-post { border-color: '.$primary_color.' #EAEAEA #EAEAEA #EAEAEA; }
 			.call-to-action-content-wrapper { border-color: #EAEAEA #EAEAEA #EAEAEA '.$primary_color.'; }
@@ -370,7 +401,7 @@ function spacious_content_nav( $nav_id ) {
 
 	?>
 	<nav role="navigation" id="<?php echo esc_attr( $nav_id ); ?>" class="<?php echo $nav_class; ?>">
-		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'spacious' ); ?></h1>
+		<h3 class="screen-reader-text"><?php _e( 'Post navigation', 'spacious' ); ?></h3>
 
 	<?php if ( is_single() ) : // navigation links for single posts ?>
 
@@ -573,4 +604,28 @@ function spacious_entry_meta() {
    endif;
 }
 endif;
+
+/**************************************************************************************/
+
+/**
+ * Making the theme Woocommrece compatible
+ */
+remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
+remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
+remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+
+add_filter( 'woocommerce_show_page_title', '__return_false' );
+
+add_action('woocommerce_before_main_content', 'spacious_wrapper_start', 10);
+add_action('woocommerce_after_main_content', 'spacious_wrapper_end', 10);
+
+function spacious_wrapper_start() {
+  echo '<div id="primary">';
+}
+
+function spacious_wrapper_end() {
+  echo '</div>';
+}
+
+add_theme_support( 'woocommerce' );
 ?>
