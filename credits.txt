@@ -45,3 +45,6 @@ Available Macro in setting:
 if ONLINE_MODE is set to Online the server is available for all IP
 if ONLINE_MODE is set to Offline the server is available just for 127.0.0.1
 
+
+-- Last updated on 05-08-2016
+
