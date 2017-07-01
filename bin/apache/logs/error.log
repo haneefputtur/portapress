@@ -16,3 +16,12 @@ AH00548: NameVirtualHost has no effect and will be removed in the next release C
 AH00548: NameVirtualHost has no effect and will be removed in the next release C:/Users/haneef.puttur/Documents/GitHub/portapress/bin/apache/conf/httpd.conf:264
 [Fri Aug 05 23:08:35.082594 2016] [ssl:warn] [pid 6944:tid 364] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
 [Fri Aug 05 23:08:35.107596 2016] [mpm_winnt:notice] [pid 6944:tid 364] AH00354: Child: Starting 64 worker threads.
+[Sat Jul 01 22:28:11.671316 2017] [core:warn] [pid 3924:tid 356] AH00098: pid file C:/Users/haneef.puttur/Downloads/portapress-master/portapress-master/bin/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Sat Jul 01 22:28:11.925917 2017] [ssl:warn] [pid 3924:tid 356] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Sat Jul 01 22:28:12.177918 2017] [mpm_winnt:notice] [pid 3924:tid 356] AH00455: Apache/2.4.10 (Win32) OpenSSL/1.0.1h PHP/5.4.31 configured -- resuming normal operations
+[Sat Jul 01 22:28:12.177918 2017] [mpm_winnt:notice] [pid 3924:tid 356] AH00456: Apache Haus VC9 Server built: Jul 15 2014 20:34:18
+[Sat Jul 01 22:28:12.177918 2017] [core:notice] [pid 3924:tid 356] AH00094: Command line: 'C:\\Users\\haneef.puttur\\Downloads\\portapress-master\\portapress-master\\bin\\apache\\bin\\httpd.exe -d C:/Users/haneef.puttur/Downloads/portapress-master/portapress-master/bin/apache -f C:\\Users\\haneef.puttur\\Downloads\\portapress-master\\portapress-master\\bin\\apache\\conf\\httpd.conf'
+[Sat Jul 01 22:28:12.177918 2017] [mpm_winnt:notice] [pid 3924:tid 356] AH00418: Parent: Created child process 5552
+AH00548: NameVirtualHost has no effect and will be removed in the next release C:/Users/haneef.puttur/Downloads/portapress-master/portapress-master/bin/apache/conf/httpd.conf:264
+[Sat Jul 01 22:28:13.352321 2017] [ssl:warn] [pid 5552:tid 368] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Sat Jul 01 22:28:13.399121 2017] [mpm_winnt:notice] [pid 5552:tid 368] AH00354: Child: Starting 64 worker threads.

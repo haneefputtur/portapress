@@ -1,13 +1,13 @@
 /*
 Theme Name: Spacious
-Theme URI: http://themegrill.com/themes/spacious
+Theme URI: https://themegrill.com/themes/spacious
 Author: ThemeGrill
-Author URI: http://themegrill.com
-Description: Spacious is an incredibly spacious multipurpose responsive theme coded & designed with a lot of care and love. You can use it for your business, portfolio, blogging or any type of site. It has 4 page layouts, 2 page templates, 4 blog display types, 13 widgets areas, 5 custom widgets focusing on business template, awesome slider, primary color option to match your logo & website, boxed & wide layout, light & dark color skin, translation ready and many more. You can get free support in http://themegrill.com/support-forum/ and check the demo at http://demo.themegrill.com/spacious/.
-Version: 1.4.0.1
+Author URI: https://themegrill.com
+Description: Spacious is an incredibly spacious multipurpose responsive theme coded & designed with a lot of care and love. You can use it for your business, portfolio, blogging or any type of site. It has 4 page layouts, 2 page templates, 4 blog display types, 13 widgets areas, 5 custom widgets focusing on business template, awesome slider, primary color option to match your logo & website, boxed & wide layout, light & dark color skin, translation ready and many more. You can get free support in https://themegrill.com/support-forum/ and check the demo at https://demo.themegrill.com/spacious/.
+Version: 1.4.6
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: one-column, two-columns, right-sidebar, left-sidebar, flexible-header, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, featured-images, theme-options, footer-widgets, blog, e-commerce, education, entertainment, food-and-drink, holiday, news, photography, portfolio
+Tags: one-column, two-columns, right-sidebar, left-sidebar, flexible-header, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, featured-images, theme-options, footer-widgets, blog, e-commerce, rtl-language-support
 Text Domain: spacious
 
 Resetting and rebuilding styles have been helped along thanks to the fine work of
@@ -1814,6 +1814,49 @@ a#scroll-up:hover {
 	text-decoration: none;
 }
 
+/* header media css
+--------------------------------------------------------------*/
+
+div.wp-custom-header {
+    position: relative;
+}
+
+iframe#wp-custom-header-video {
+    width: 100%;
+}
+.wp-custom-header-video-button {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 62px;
+    height: 50px;
+    font: 0px/0 a;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+div#wp-custom-header:hover .wp-custom-header-video-button {
+    visibility: visible;
+    opacity: 1;
+}
+
+.wp-custom-header-video-button:before {
+    content: "\f452";
+    display: block;
+    font-family:  "Genericons";
+    font-size: 20px;
+}
+
+.wp-custom-header-video-button.wp-custom-header-video-pause:before{
+    content: "\f448";
+}
 /* =RESPONSIVE STRUCTURE
 ----------------------------------------------- */
 @media screen and (min-width: 1500px) {

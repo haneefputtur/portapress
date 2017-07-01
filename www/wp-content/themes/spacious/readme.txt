@@ -1,6 +1,6 @@
 == SPACIOUS ==
 
-Spacious is an incredibly spacious multipurpose responsive theme coded & designed with a lot of care and love. You can use it for your business, portfolio, blogging or any type of site. It has 4 page layouts, 6 page templates, 13 widgets areas, 5 custom widgets focusing on business template, awesome slider, primary color option to match your logo & website, boxed & wide layout, light & dark color skin, translation ready and many more. You can get free support in http://themegrill.com/support-forum/ and check the demo at http://demo.themegrill.com/spacious/.
+Spacious is an incredibly spacious multipurpose responsive theme coded & designed with a lot of care and love. You can use it for your business, portfolio, blogging or any type of site. It has 4 page layouts, 6 page templates, 13 widgets areas, 5 custom widgets focusing on business template, awesome slider, primary color option to match your logo & website, boxed & wide layout, light & dark color skin, translation ready and many more. You can get free support in http://sthemegrill.com/support-forum/ and check the demo at https://demo.themegrill.com/spacious/.
 
 /**********************************************************/
 
@@ -17,6 +17,7 @@ Resources packed within the theme.
 * HTML5 Shiv @afarkas @jdalton @jon_neal @rem | MIT/GPL2 Licensed
 * The script jquery.cycle.all.js is dual licensed under GPL & MIT
 * Other custom js files are our own creation and is licensed under the same license as this theme.
+* TGM-Plugin-Activation by Thomas Griffin, Gary Jones, Juliette Reinders Folmer | GPL v2 Licensed
 
 All other resources and theme elements are licensed under the [GNU GPL](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html), version 2 or later.
 
@@ -28,10 +29,10 @@ Spacious is distributed under the terms of the GNU GPL
 == THEME USAGE ==
 
 = Theme Instruction =
-Get theme instruction at http://themegrill.com/theme-instruction/spacious
+Get theme instruction at https://themegrill.com/theme-instruction/spacious
 
 = Free Support =
-Get free support at http://themegrill.com/support-forum
+Get free support at https://themegrill.com/support-forum
 
 = Theme Features Usage =
 All available options can be used from Appearance->Customize
@@ -45,6 +46,32 @@ and we will include it within the theme from next version update.
 /**********************************************************/
 
 == Changelog ==
+= Version 1.4.6 - 2017-04-28 =
+* Tweaks - Add theme support for WooCommerce 3.0's new gallery feature
+
+= Version 1.4.5 - 2017-03-03 =
+* Tweaks - Add support for customize selective refresh widgets
+* Tweaks - Add TGMPA to recommend ThemeGrill Demo Importer plugin
+
+= Version 1.4.4 - 2017-01-24 =
+* Added - Support for Video Headers introduced in WordPress 4.7.
+
+= Version 1.4.3 - 2016-12-31 =
+* Fix - Delete the old favicon, site logo and Custom CSS code theme options table supporting the child theme
+* Added - RTL Language support.
+
+= Version 1.4.2 - 2016-12-09 =
+* Feature - Added support for Site Icon introduced in WordPress 4.3
+* Feature - Added the Custom Site Logo feature introduced in WordPress 4.5
+* Feature - Migrated the Custom CSS code added in theme settings to Additional CSS section introduced in WordPress 4.7
+
+= Version 1.4.1 - 2016-09-02 =
+* Tweaks - Removed Russian language file as 100% translation now available at wordpress.org
+* Tweaks - Removed French language file as 100% translation now available at wordpress.org
+* Tweaks - Removed Italian language file as 100% translation now available at wordpress.org
+* Tweaks - Removed Portugese (Brazil) language file as 100% translation now available at wordpress.org
+* Tweaks - Updated the theme tags
+
 = Version 1.4.0.1 =
 * Tweaks - HTML tags removed from the string translation.
 

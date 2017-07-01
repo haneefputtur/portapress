@@ -21,9 +21,9 @@ function spacious_options( $id, $default = false ) {
    // getting options value
    $spacious_options = get_option( $themename );
    if ( isset( $spacious_options[ $id ] ) ) {
-      return $spacious_options[ $id ];
+	  return $spacious_options[ $id ];
    } else {
-      return $default;
+	  return $default;
    }
 }
 
@@ -73,10 +73,8 @@ function spacious_scripts_styles_method() {
 
 	wp_enqueue_style( 'google_fonts' );
 
-   $spacious_user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
-	if(preg_match('/(?i)msie [1-8]/',$spacious_user_agent)) {
-		wp_enqueue_script( 'html5', SPACIOUS_JS_URL . '/html5shiv.min.js', true );
-	}
+	wp_enqueue_script( 'html5', SPACIOUS_JS_URL . '/html5shiv.min.js', true );
+	wp_script_add_data( 'html5', 'conditional', 'lte IE 8' );
 
 }
 
@@ -87,7 +85,7 @@ add_filter('the_content', 'spacious_add_mod_hatom_data');
 function spacious_add_mod_hatom_data($content) {
    $title = get_the_title();
    if ( is_single() ) {
-      $content .= '<div class="extra-hatom-entry-title"><span class="entry-title">' . $title . '</span></div>';
+	  $content .= '<div class="extra-hatom-entry-title"><span class="entry-title">' . $title . '</span></div>';
    }
    return $content;
 }
@@ -256,7 +254,7 @@ function spacious_favicon() {
 	if ( spacious_options( 'spacious_activate_favicon', '0' ) == '1' ) {
 		$spacious_favicon = spacious_options( 'spacious_favicon', '' );
 		$spacious_favicon_output = '';
-		if ( !empty( $spacious_favicon ) ) {
+		if ( ! function_exists( 'has_site_icon' ) || ( ! empty( $spacious_favicon ) && ! has_site_icon() ) ) {
 			$spacious_favicon_output .= '<link rel="shortcut icon" href="'.esc_url( $spacious_favicon ).'" type="image/x-icon" />';
 		}
 		echo $spacious_favicon_output;
@@ -367,8 +365,8 @@ function spacious_custom_css() {
 		<?php
 	}
 
-	$spacious_custom_css = spacious_options( 'spacious_custom_css', '' );
-	if( !empty( $spacious_custom_css ) ) {
+	$spacious_custom_css = spacious_options( 'spacious_custom_css' );
+	if( $spacious_custom_css && ! function_exists( 'wp_update_custom_css_post' ) ) {
 		?>
 		<style type="text/css"><?php echo $spacious_custom_css; ?></style>
 		<?php
@@ -492,9 +490,9 @@ if ( ! function_exists( 'spacious_footer_copyright' ) ) :
 function spacious_footer_copyright() {
 	$site_link = '<a href="' . esc_url( home_url( '/' ) ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" ><span>' . get_bloginfo( 'name', 'display' ) . '</span></a>';
 
-	$wp_link = '<a href="'.esc_url( 'http://wordpress.org' ).'" target="_blank" title="' . esc_attr__( 'WordPress', 'spacious' ) . '"><span>' . __( 'WordPress', 'spacious' ) . '</span></a>';
+	$wp_link = '<a href="'.esc_url( 'https://wordpress.org' ).'" target="_blank" title="' . esc_attr__( 'WordPress', 'spacious' ) . '"><span>' . __( 'WordPress', 'spacious' ) . '</span></a>';
 
-	$tg_link =  '<a href="'.esc_url( 'http://themegrill.com/themes/spacious' ).'" target="_blank" title="'.esc_attr__( 'ThemeGrill', 'spacious' ).'" rel="designer"><span>'.__( 'ThemeGrill', 'spacious') .'</span></a>';
+	$tg_link =  '<a href="'.esc_url( 'https://themegrill.com/themes/spacious' ).'" target="_blank" title="'.esc_attr__( 'ThemeGrill', 'spacious' ).'" rel="designer"><span>'.__( 'ThemeGrill', 'spacious') .'</span></a>';
 
 	$default_footer_value = sprintf( __( 'Copyright &copy; %1$s %2$s.', 'spacious' ), date( 'Y' ), $site_link ).' '.sprintf( __( 'Powered by %s.', 'spacious' ), $wp_link ).' '.sprintf( __( 'Theme: %1$s by %2$s.', 'spacious' ), 'Spacious', $tg_link );
 
@@ -546,9 +544,9 @@ function spacious_textarea_sanitization_change() {
  */
 function spacious_sanitize_textarea_custom( $input,$option ) {
    if( $option['id'] == "spacious_custom_css" ) {
-      $output = wp_filter_nohtml_kses( $input );
+	  $output = wp_filter_nohtml_kses( $input );
    } else {
-      $output = $input;
+	  $output = $input;
    }
    return $output;
 }
@@ -561,46 +559,46 @@ if ( ! function_exists( 'spacious_entry_meta' ) ) :
  */
 function spacious_entry_meta() {
    if ( 'post' == get_post_type() ) :
-      echo '<footer class="entry-meta-bar clearfix">';
-      echo '<div class="entry-meta clearfix">';
-      ?>
+	  echo '<footer class="entry-meta-bar clearfix">';
+	  echo '<div class="entry-meta clearfix">';
+	  ?>
 
-      <span class="by-author author vcard"><a class="url fn n" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author(); ?></a></span>
+	  <span class="by-author author vcard"><a class="url fn n" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author(); ?></a></span>
 
-      <?php
-      $time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
-      if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-         $time_string .= '<time class="updated" datetime="%3$s">%4$s</time>';
-      }
-      $time_string = sprintf( $time_string,
-         esc_attr( get_the_date( 'c' ) ),
-         esc_html( get_the_date() ),
-         esc_attr( get_the_modified_date( 'c' ) ),
-         esc_html( get_the_modified_date() )
-      );
-      printf( __( '<span class="date"><a href="%1$s" title="%2$s" rel="bookmark">%3$s</a></span>', 'spacious' ),
-         esc_url( get_permalink() ),
-         esc_attr( get_the_time() ),
-         $time_string
-      ); ?>
+	  <?php
+	  $time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
+	  if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+		 $time_string .= '<time class="updated" datetime="%3$s">%4$s</time>';
+	  }
+	  $time_string = sprintf( $time_string,
+		 esc_attr( get_the_date( 'c' ) ),
+		 esc_html( get_the_date() ),
+		 esc_attr( get_the_modified_date( 'c' ) ),
+		 esc_html( get_the_modified_date() )
+	  );
+	  printf( __( '<span class="date"><a href="%1$s" title="%2$s" rel="bookmark">%3$s</a></span>', 'spacious' ),
+		 esc_url( get_permalink() ),
+		 esc_attr( get_the_time() ),
+		 $time_string
+	  ); ?>
 
-      <?php if( has_category() ) { ?>
-         <span class="category"><?php the_category(', '); ?></span>
-      <?php } ?>
+	  <?php if( has_category() ) { ?>
+		 <span class="category"><?php the_category(', '); ?></span>
+	  <?php } ?>
 
-      <?php if ( comments_open() ) { ?>
-         <span class="comments"><?php comments_popup_link( __( 'No Comments', 'spacious' ), __( '1 Comment', 'spacious' ), __( '% Comments', 'spacious' ), '', __( 'Comments Off', 'spacious' ) ); ?></span>
-      <?php } ?>
+	  <?php if ( comments_open() ) { ?>
+		 <span class="comments"><?php comments_popup_link( __( 'No Comments', 'spacious' ), __( '1 Comment', 'spacious' ), __( '% Comments', 'spacious' ), '', __( 'Comments Off', 'spacious' ) ); ?></span>
+	  <?php } ?>
 
-      <?php edit_post_link( __( 'Edit', 'spacious' ), '<span class="edit-link">', '</span>' ); ?>
+	  <?php edit_post_link( __( 'Edit', 'spacious' ), '<span class="edit-link">', '</span>' ); ?>
 
-      <?php if ( ( spacious_options( 'spacious_archive_display_type', 'blog_large' ) != 'blog_full_content' ) && !is_single() ) { ?>
-         <span class="read-more-link"><a class="read-more" href="<?php the_permalink(); ?>"><?php _e( 'Read more', 'spacious' ); ?></a></span>
-      <?php } ?>
+	  <?php if ( ( spacious_options( 'spacious_archive_display_type', 'blog_large' ) != 'blog_full_content' ) && !is_single() ) { ?>
+		 <span class="read-more-link"><a class="read-more" href="<?php the_permalink(); ?>"><?php _e( 'Read more', 'spacious' ); ?></a></span>
+	  <?php } ?>
 
-      <?php
-      echo '</div>';
-      echo '</footer>';
+	  <?php
+	  echo '</div>';
+	  echo '</footer>';
    endif;
 }
 endif;
@@ -620,12 +618,128 @@ add_action('woocommerce_before_main_content', 'spacious_wrapper_start', 10);
 add_action('woocommerce_after_main_content', 'spacious_wrapper_end', 10);
 
 function spacious_wrapper_start() {
-  echo '<div id="primary">';
+	echo '<div id="primary">';
 }
 
 function spacious_wrapper_end() {
-  echo '</div>';
+	echo '</div>';
 }
 
-add_theme_support( 'woocommerce' );
-?>
+function spacious_woocommerce_support() {
+	add_theme_support( 'woocommerce' );
+	add_theme_support( 'wc-product-gallery-zoom' );
+	add_theme_support( 'wc-product-gallery-lightbox' );
+	add_theme_support( 'wc-product-gallery-slider' );
+}
+add_action( 'after_setup_theme', 'spacious_woocommerce_support' );
+
+/**
+ * Function to transfer the favicon added in Customizer Options of theme to Site Icon in Site Identity section
+ */
+function spacious_site_icon_migrate() {
+	if ( get_option( 'spacious_site_icon_transfer' ) ) {
+		return;
+	}
+
+	$spacious_favicon = spacious_options( 'spacious_favicon', 0 );
+
+	// Migrate spacious site icon.
+	if ( function_exists( 'has_site_icon' ) && ( ! empty( $spacious_favicon ) && ! has_site_icon() ) ) {
+		// assigning theme name
+		$themename = get_option( 'stylesheet' );
+		$themename = preg_replace("/\W/", "_", strtolower( $themename ) );
+
+		$theme_options = get_option( $themename );
+		$attachment_id = attachment_url_to_postid( $spacious_favicon );
+
+		// Update site icon transfer options.
+		if ( $theme_options && $attachment_id ) {
+			update_option( 'site_icon', $attachment_id );
+			update_option( 'spacious_site_icon_transfer', 1 );
+
+			// Remove old favicon options.
+			foreach ( $theme_options as $option_key => $option_value ) {
+				if ( in_array( $option_key, array( 'spacious_favicon', 'spacious_activate_favicon' ) ) ) {
+					unset( $theme_options[ $option_key ] );
+				}
+			}
+		}
+
+		// Finally, update spacious theme options.
+		update_option( $themename, $theme_options );
+	}
+}
+
+add_action( 'after_setup_theme', 'spacious_site_icon_migrate' );
+
+// Displays the site logo
+if ( ! function_exists( 'spacious_the_custom_logo' ) ) {
+	/**
+	 * Displays the optional custom logo.
+	 */
+	function spacious_the_custom_logo() {
+		if ( function_exists( 'the_custom_logo' )  && ( spacious_options( 'spacious_header_logo_image','' ) == '') ) {
+			the_custom_logo();
+		}
+	}
+}
+
+/**
+ * Migrate any existing theme CSS codes added in Customize Options to the core option added in WordPress 4.7
+ */
+function spacious_custom_css_migrate() {
+	if ( function_exists( 'wp_update_custom_css_post' ) ) {
+		$custom_css = spacious_options( 'spacious_custom_css' );
+		if ( $custom_css ) {
+			// assigning theme name
+			$themename = get_option( 'stylesheet' );
+			$themename = preg_replace("/\W/", "_", strtolower( $themename ) );
+
+			$core_css = wp_get_custom_css(); // Preserve any CSS already added to the core option.
+			$return = wp_update_custom_css_post( $core_css . $custom_css );
+
+			if ( ! is_wp_error( $return ) ) {
+				$theme_options = get_option( $themename );
+				// Remove the old theme_mod, so that the CSS is stored in only one place moving forward.
+				if ( isset( $theme_options[ 'spacious_custom_css' ] ) ) {
+					unset( $theme_options[ 'spacious_custom_css' ] );
+				}
+
+				// Finally, update spacious theme options.
+				update_option( $themename, $theme_options );
+			}
+		}
+	}
+}
+
+add_action( 'after_setup_theme', 'spacious_custom_css_migrate' );
+
+/**
+ * Function to transfer the Header Logo added in Customizer Options of theme to Site Logo in Site Identity section
+ */
+function spacious_site_logo_migrate() {
+	if ( function_exists( 'the_custom_logo' ) && ! has_custom_logo( $blog_id = 0 ) ) {
+		$logo_url = spacious_options( 'spacious_header_logo_image' );
+
+		if ( $logo_url ) {
+			// assigning theme name
+			$themename = get_option( 'stylesheet' );
+			$themename = preg_replace("/\W/", "_", strtolower( $themename ) );
+
+			$customizer_site_logo_id = attachment_url_to_postid( $logo_url );
+			set_theme_mod( 'custom_logo', $customizer_site_logo_id );
+
+			// Delete the old Site Logo theme_mod option.
+			$theme_options = get_option( $themename );
+
+			if ( isset( $theme_options[ 'spacious_header_logo_image' ] ) ) {
+				unset( $theme_options[ 'spacious_header_logo_image' ] );
+			}
+
+			// Finally, update spacious theme options.
+			update_option( $themename, $theme_options );
+		}
+	}
+}
+
+add_action( 'after_setup_theme', 'spacious_site_logo_migrate' );

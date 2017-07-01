@@ -70,6 +70,16 @@ function spacious_setup() {
    // Supporting title tag via add_theme_support (since WordPress 4.1)
    add_theme_support( 'title-tag' );
 
+   // Adds the support for the Custom Logo introduced in WordPress 4.5
+   add_theme_support( 'custom-logo',
+   		array(
+   			'height' => '100',
+   			'width' => '100',
+   			'flex-width' => true,
+   			'flex-height' => true,
+   		)
+   	);
+
 	// Registering navigation menus.
 	register_nav_menus( array(
 		'primary' 	=> __( 'Primary Menu','spacious' ),
@@ -90,13 +100,17 @@ function spacious_setup() {
 	// Adding excerpt option box for pages as well
 	add_post_type_support( 'page', 'excerpt' );
 
-   /*
-    * Switch default core markup for search form, comment form, and comments
-    * to output valid HTML5.
-    */
-   add_theme_support('html5', array(
-       'search-form', 'comment-form', 'comment-list', 'gallery', 'caption',
-   ));
+	/**
+	 * Switch default core markup for search form, comment form, and comments
+	 * to output valid HTML5.
+	 */
+	add_theme_support('html5', array(
+		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption',
+	));
+
+	// Support for selective refresh widgets in Customizer
+	add_theme_support( 'customize-selective-refresh-widgets' );
+
 }
 endif;
 
@@ -152,6 +166,13 @@ require_once( SPACIOUS_WIDGETS_DIR . '/widgets.php' );
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 /**
+ * Load Demo Importer Configs.
+ */
+if ( class_exists( 'TG_Demo_Importer' ) ) {
+	require get_template_directory() . '/inc/demo-config.php';
+}
+
+/**
  * Assign the Spacious version to a variable.
  */
 $theme            = wp_get_theme( 'spacious' );
@@ -161,3 +182,8 @@ $spacious_version = $theme['Version'];
 if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/class-spacious-admin.php';
 }
+/**
+* Load TGMPA Configs.
+*/
+require_once( SPACIOUS_INCLUDES_DIR . '/tgm-plugin-activation/class-tgm-plugin-activation.php' );
+require_once( SPACIOUS_INCLUDES_DIR . '/tgm-plugin-activation/tgmpa-spacious.php' );

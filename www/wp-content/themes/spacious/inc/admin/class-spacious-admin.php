@@ -128,13 +128,13 @@ class Spacious_Admin {
 		</div>
 
 		<p class="spacious-actions">
-			<a href="<?php echo esc_url( 'http://themegrill.com/themes/spacious/' ); ?>" class="button button-secondary" target="_blank"><?php esc_html_e( 'Theme Info', 'spacious' ); ?></a>
+			<a href="<?php echo esc_url( 'https://themegrill.com/themes/spacious/' ); ?>" class="button button-secondary" target="_blank"><?php esc_html_e( 'Theme Info', 'spacious' ); ?></a>
 
-			<a href="<?php echo esc_url( 'http://demo.themegrill.com/spacious/' ); ?>" class="button button-secondary docs" target="_blank"><?php esc_html_e( 'View Demo', 'spacious' ); ?></a>
+			<a href="<?php echo esc_url( 'https://demo.themegrill.com/spacious/' ); ?>" class="button button-secondary docs" target="_blank"><?php esc_html_e( 'View Demo', 'spacious' ); ?></a>
 
-			<a href="<?php echo esc_url( 'http://themegrill.com/themes/spacious-pro/' ); ?>" class="button button-primary docs" target="_blank"><?php esc_html_e( 'View PRO version', 'spacious' ); ?></a>
+			<a href="<?php echo esc_url( 'https://themegrill.com/themes/spacious-pro/' ); ?>" class="button button-primary docs" target="_blank"><?php esc_html_e( 'View PRO version', 'spacious' ); ?></a>
 
-			<a href="<?php echo esc_url( 'https://wordpress.org/support/view/theme-reviews/spacious?filter=5#postform' ); ?>" class="button button-secondary docs" target="_blank"><?php esc_html_e( 'Rate this theme', 'spacious' ); ?></a>
+			<a href="<?php echo esc_url( 'https://wordpress.org/support/theme/spacious/reviews?rate=5#new-post' ); ?>" class="button button-secondary docs" target="_blank"><?php esc_html_e( 'Rate this theme', 'spacious' ); ?></a>
 		</p>
 
 		<h2 class="nav-tab-wrapper">
@@ -181,6 +181,11 @@ class Spacious_Admin {
 
 			<div class="changelog point-releases">
 				<div class="under-the-hood two-col">
+               <div class="col">
+                  <h3><?php esc_html_e( 'Import Demo', 'spacious' ); ?></h3>
+                  <p><?php esc_html_e( 'Needs ThemeGrill Demo Importer plugin.', 'spacious' ) ?></p>
+                  <p><a href="<?php echo esc_url( network_admin_url( 'plugin-install.php?tab=search&type=term&s=themegrill-demo-importer' ) ); ?>" class="button button-primary"><?php esc_html_e( 'Install', 'spacious' ); ?></a></p>
+               </div>
 					<div class="col">
 						<h3><?php esc_html_e( 'Theme Customizer', 'spacious' ); ?></h3>
 						<p><?php esc_html_e( 'All Theme Options are available via Customize screen.', 'spacious' ) ?></p>
@@ -190,25 +195,25 @@ class Spacious_Admin {
 					<div class="col">
 						<h3><?php esc_html_e( 'Documentation', 'spacious' ); ?></h3>
 						<p><?php esc_html_e( 'Please view our documentation page to setup the theme.', 'spacious' ) ?></p>
-						<p><a href="<?php echo esc_url( 'http://themegrill.com/theme-instruction/spacious/' ); ?>" class="button button-secondary"><?php esc_html_e( 'Documentation', 'spacious' ); ?></a></p>
+						<p><a href="<?php echo esc_url( 'https://themegrill.com/theme-instruction/spacious/' ); ?>" class="button button-secondary"><?php esc_html_e( 'Documentation', 'spacious' ); ?></a></p>
 					</div>
 
 					<div class="col">
 						<h3><?php esc_html_e( 'Got theme support question?', 'spacious' ); ?></h3>
 						<p><?php esc_html_e( 'Please put it in our dedicated support forum.', 'spacious' ) ?></p>
-						<p><a href="<?php echo esc_url( 'http://themegrill.com/support-forum/' ); ?>" class="button button-secondary"><?php esc_html_e( 'Support Forum', 'spacious' ); ?></a></p>
+						<p><a href="<?php echo esc_url( 'https://themegrill.com/support-forum/' ); ?>" class="button button-secondary"><?php esc_html_e( 'Support Forum', 'spacious' ); ?></a></p>
 					</div>
 
 					<div class="col">
 						<h3><?php esc_html_e( 'Need more features?', 'spacious' ); ?></h3>
 						<p><?php esc_html_e( 'Upgrade to PRO version for more exciting features.', 'spacious' ) ?></p>
-						<p><a href="<?php echo esc_url( 'http://themegrill.com/themes/spacious-pro/' ); ?>" class="button button-secondary"><?php esc_html_e( 'View Pro', 'spacious' ); ?></a></p>
+						<p><a href="<?php echo esc_url( 'https://themegrill.com/themes/spacious-pro/' ); ?>" class="button button-secondary"><?php esc_html_e( 'View Pro', 'spacious' ); ?></a></p>
 					</div>
 
 					<div class="col">
 						<h3><?php esc_html_e( 'Got sales related question?', 'spacious' ); ?></h3>
 						<p><?php esc_html_e( 'Please send it via our sales contact page.', 'spacious' ) ?></p>
-						<p><a href="<?php echo esc_url( 'http://themegrill.com/contact/' ); ?>" class="button button-secondary"><?php esc_html_e( 'Contact Page', 'spacious' ); ?></a></p>
+						<p><a href="<?php echo esc_url( 'https://themegrill.com/contact/' ); ?>" class="button button-secondary"><?php esc_html_e( 'Contact Page', 'spacious' ); ?></a></p>
 					</div>
 
 					<div class="col">
@@ -466,7 +471,7 @@ class Spacious_Admin {
 						<td><span class="dashicons dashicons-yes"></span></td>
 					</tr>
 					<tr>
-						<td><h3><?php esc_html_e('TG: Featured Singe page widget', 'spacious'); ?></h3></td>
+						<td><h3><?php esc_html_e('TG: Featured Single page widget', 'spacious'); ?></h3></td>
 						<td><span class="dashicons dashicons-yes"></span></td>
 						<td><span class="dashicons dashicons-yes"></span></td>
 					</tr>
@@ -494,7 +499,7 @@ class Spacious_Admin {
 						<td></td>
 						<td></td>
 						<td class="btn-wrapper">
-							<a href="<?php echo esc_url( apply_filters( 'spacious_pro_theme_url', 'http://themegrill.com/themes/spacious-pro/' ) ); ?>" class="button button-secondary docs" target="_blank"><?php esc_html_e( 'View Pro', 'spacious' ); ?></a>
+							<a href="<?php echo esc_url( apply_filters( 'spacious_pro_theme_url', 'https://themegrill.com/themes/spacious-pro/' ) ); ?>" class="button button-secondary docs" target="_blank"><?php esc_html_e( 'View Pro', 'spacious' ); ?></a>
 						</td>
 					</tr>
 				</tbody>

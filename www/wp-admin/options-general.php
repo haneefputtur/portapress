@@ -13,11 +13,11 @@ require_once( dirname( __FILE__ ) . '/admin.php' );
 require_once( ABSPATH . 'wp-admin/includes/translation-install.php' );
 
 if ( ! current_user_can( 'manage_options' ) )
-	wp_die( __( 'You do not have sufficient permissions to manage options for this site.' ) );
+	wp_die( __( 'Sorry, you are not allowed to manage options for this site.' ) );
 
 $title = __('General Settings');
 $parent_file = 'options-general.php';
-/* translators: date and time format for exact current time, mainly about timezones, see http://php.net/date */
+/* translators: date and time format for exact current time, mainly about timezones, see https://secure.php.net/date */
 $timezone_format = _x('Y-m-d H:i:s', 'timezone date format');
 
 add_action('admin_head', 'options_general_add_js');
@@ -42,8 +42,8 @@ get_current_screen()->add_help_tab( array(
 
 get_current_screen()->set_help_sidebar(
 	'<p><strong>' . __('For more information:') . '</strong></p>' .
-	'<p>' . __('<a href="https://codex.wordpress.org/Settings_General_Screen" target="_blank">Documentation on General Settings</a>') . '</p>' .
-	'<p>' . __('<a href="https://wordpress.org/support/" target="_blank">Support Forums</a>') . '</p>'
+	'<p>' . __('<a href="https://codex.wordpress.org/Settings_General_Screen">Documentation on General Settings</a>') . '</p>' .
+	'<p>' . __('<a href="https://wordpress.org/support/">Support Forums</a>') . '</p>'
 );
 
 include( ABSPATH . 'wp-admin/admin-header.php' );
@@ -112,7 +112,7 @@ if ( $new_admin_email && $new_admin_email != get_option('admin_email') ) : ?>
 	);
 	printf(
 		' <a href="%1$s">%2$s</a>',
-		esc_url( admin_url( 'options.php?dismiss=new_admin_email' ) ),
+		esc_url( wp_nonce_url( admin_url( 'options.php?dismiss=new_admin_email' ), 'dismiss-' . get_current_blog_id() . '-new_admin_email' ) ),
 		__( 'Cancel' )
 	);
 ?></p>
@@ -120,7 +120,51 @@ if ( $new_admin_email && $new_admin_email != get_option('admin_email') ) : ?>
 <?php endif; ?>
 </td>
 </tr>
-<?php } ?>
+<?php }
+
+$languages = get_available_languages();
+$translations = wp_get_available_translations();
+if ( ! is_multisite() && defined( 'WPLANG' ) && '' !== WPLANG && 'en_US' !== WPLANG && ! in_array( WPLANG, $languages ) ) {
+	$languages[] = WPLANG;
+}
+if ( ! empty( $languages ) || ! empty( $translations ) ) {
+	?>
+	<tr>
+		<th scope="row"><label for="WPLANG"><?php _e( 'Site Language' ); ?></label></th>
+		<td>
+			<?php
+			$locale = get_locale();
+			if ( ! in_array( $locale, $languages ) ) {
+				$locale = '';
+			}
+
+			wp_dropdown_languages( array(
+				'name'         => 'WPLANG',
+				'id'           => 'WPLANG',
+				'selected'     => $locale,
+				'languages'    => $languages,
+				'translations' => $translations,
+				'show_available_translations' => ( ! is_multisite() || is_super_admin() ) && wp_can_install_language_pack(),
+			) );
+
+			// Add note about deprecated WPLANG constant.
+			if ( defined( 'WPLANG' ) && ( '' !== WPLANG ) && $locale !== WPLANG ) {
+				if ( is_multisite() && current_user_can( 'manage_network_options' )
+					|| ! is_multisite() && current_user_can( 'manage_options' ) ) {
+					?>
+					<p class="description">
+						<strong><?php _e( 'Note:' ); ?></strong> <?php printf( __( 'The %s constant in your %s file is no longer needed.' ), '<code>WPLANG</code>', '<code>wp-config.php</code>' ); ?>
+					</p>
+					<?php
+				}
+				_deprecated_argument( 'define()', '4.0.0', sprintf( __( 'The %s constant in your %s file is no longer needed.' ), 'WPLANG', 'wp-config.php' ) );
+			}
+			?>
+		</td>
+	</tr>
+	<?php
+}
+?>
 <tr>
 <?php
 $current_offset = get_option('gmt_offset');
@@ -147,17 +191,17 @@ if ( empty($tzstring) ) { // Create a UTC+- zone if no timezone string exists
 <td>
 
 <select id="timezone_string" name="timezone_string" aria-describedby="timezone-description">
-<?php echo wp_timezone_choice($tzstring); ?>
+	<?php echo wp_timezone_choice( $tzstring, get_user_locale() ); ?>
 </select>
 
-<p class="description" id="timezone-description"><?php _e( 'Choose a city in the same timezone as you.' ); ?></p>
+<p class="description" id="timezone-description"><?php _e( 'Choose either a city in the same timezone as you or a UTC timezone offset.' ); ?></p>
 
 <p class="timezone-info">
 	<span id="utc-time"><?php
 		/* translators: 1: UTC abbreviation, 2: UTC time */
 		printf( __( 'Universal time (%1$s) is %2$s.' ),
 			'<abbr>' . __( 'UTC' ) . '</abbr>',
-			'<code>' . date_i18n( $timezone_format, false, 'gmt' ) . '</code>'
+			'<code>' . date_i18n( $timezone_format, false, true ) . '</code>'
 		);
 	?></span>
 <?php if ( get_option( 'timezone_string' ) || ! empty( $current_offset ) ) : ?>
@@ -231,7 +275,7 @@ if ( empty($tzstring) ) { // Create a UTC+- zone if no timezone string exists
 	<fieldset><legend class="screen-reader-text"><span><?php _e('Date Format') ?></span></legend>
 <?php
 	/**
-	* Filter the default date formats.
+	* Filters the default date formats.
 	*
 	* @since 2.7.0
 	* @since 4.0.0 Added ISO date standard YYYY-MM-DD format.
@@ -253,9 +297,9 @@ if ( empty($tzstring) ) { // Create a UTC+- zone if no timezone string exists
 
 	echo '<label><input type="radio" name="date_format" id="date_format_custom_radio" value="\c\u\s\t\o\m"';
 	checked( $custom );
-	echo '/> <span class="date-time-text date-time-custom-text">' . __( 'Custom:' ) . '<span class="screen-reader-text"> ' . __( 'enter a custom date format in the following field' ) . '</span></label>' .
+	echo '/> <span class="date-time-text date-time-custom-text">' . __( 'Custom:' ) . '<span class="screen-reader-text"> ' . __( 'enter a custom date format in the following field' ) . '</span></span></label>' .
 		'<label for="date_format_custom" class="screen-reader-text">' . __( 'Custom date format:' ) . '</label>' .
-		'<input type="text" name="date_format_custom" id="date_format_custom" value="' . esc_attr( get_option( 'date_format' ) ) . '" class="small-text" /></span>' .
+		'<input type="text" name="date_format_custom" id="date_format_custom" value="' . esc_attr( get_option( 'date_format' ) ) . '" class="small-text" />' .
 		'<span class="screen-reader-text">' . __( 'example:' ) . ' </span> <span class="example">' . date_i18n( get_option( 'date_format' ) ) . '</span>' .
 		"<span class='spinner'></span>\n";
 ?>
@@ -268,7 +312,7 @@ if ( empty($tzstring) ) { // Create a UTC+- zone if no timezone string exists
 	<fieldset><legend class="screen-reader-text"><span><?php _e('Time Format') ?></span></legend>
 <?php
 	/**
-	* Filter the default time formats.
+	* Filters the default time formats.
 	*
 	* @since 2.7.0
 	*
@@ -289,9 +333,9 @@ if ( empty($tzstring) ) { // Create a UTC+- zone if no timezone string exists
 
 	echo '<label><input type="radio" name="time_format" id="time_format_custom_radio" value="\c\u\s\t\o\m"';
 	checked( $custom );
-	echo '/> <span class="date-time-text date-time-custom-text">' . __( 'Custom:' ) . '<span class="screen-reader-text"> ' . __( 'enter a custom time format in the following field' ) . '</span></label>' .
+	echo '/> <span class="date-time-text date-time-custom-text">' . __( 'Custom:' ) . '<span class="screen-reader-text"> ' . __( 'enter a custom time format in the following field' ) . '</span></span></label>' .
 		'<label for="time_format_custom" class="screen-reader-text">' . __( 'Custom time format:' ) . '</label>' .
-		'<input type="text" name="time_format_custom" id="time_format_custom" value="' . esc_attr( get_option( 'time_format' ) ) . '" class="small-text" /></span>' .
+		'<input type="text" name="time_format_custom" id="time_format_custom" value="' . esc_attr( get_option( 'time_format' ) ) . '" class="small-text" />' .
 		'<span class="screen-reader-text">' . __( 'example:' ) . ' </span> <span class="example">' . date_i18n( get_option( 'time_format' ) ) . '</span>' .
 		"<span class='spinner'></span>\n";
 
@@ -317,50 +361,6 @@ endfor;
 </select></td>
 </tr>
 <?php do_settings_fields('general', 'default'); ?>
-
-<?php
-$languages = get_available_languages();
-$translations = wp_get_available_translations();
-if ( ! is_multisite() && defined( 'WPLANG' ) && '' !== WPLANG && 'en_US' !== WPLANG && ! in_array( WPLANG, $languages ) ) {
-	$languages[] = WPLANG;
-}
-if ( ! empty( $languages ) || ! empty( $translations ) ) {
-	?>
-	<tr>
-		<th width="33%" scope="row"><label for="WPLANG"><?php _e( 'Site Language' ); ?></label></th>
-		<td>
-			<?php
-			$locale = get_locale();
-			if ( ! in_array( $locale, $languages ) ) {
-				$locale = '';
-			}
-
-			wp_dropdown_languages( array(
-				'name'         => 'WPLANG',
-				'id'           => 'WPLANG',
-				'selected'     => $locale,
-				'languages'    => $languages,
-				'translations' => $translations,
-				'show_available_translations' => ( ! is_multisite() || is_super_admin() ) && wp_can_install_language_pack(),
-			) );
-
-			// Add note about deprecated WPLANG constant.
-			if ( defined( 'WPLANG' ) && ( '' !== WPLANG ) && $locale !== WPLANG ) {
-				if ( is_super_admin() ) {
-					?>
-					<p class="description">
-						<strong><?php _e( 'Note:' ); ?></strong> <?php printf( __( 'The %s constant in your %s file is no longer needed.' ), '<code>WPLANG</code>', '<code>wp-config.php</code>' ); ?>
-					</p>
-					<?php
-				}
-				_deprecated_argument( 'define()', '4.0', sprintf( __( 'The %s constant in your %s file is no longer needed.' ), 'WPLANG', 'wp-config.php' ) );
-			}
-			?>
-		</td>
-	</tr>
-	<?php
-}
-?>
 </table>
 
 <?php do_settings_sections('general'); ?>
