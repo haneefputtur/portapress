@@ -1,0 +1,188 @@
+/* =SECONDARY MENUS
+----------------------------------------------- */
+
+.small-menu {
+	float: right;
+
+	li {
+		float: left;
+		position: relative;
+		font-family: 'Lato', sans-serif;
+
+		&.default-menu {
+			display: none;
+		}
+	}
+}
+
+li.default-menu {
+	display: none;
+}
+
+.small-menu {
+	a {
+		color: #666666;
+		display: block;
+		padding: 5px 0 0 16px;
+		font-size: 12px;
+
+		&:hover {
+			color: #0FBE7C;
+		}
+	}
+
+	ul li {
+		&.current-menu-item a, &.current_page_ancestor a, &.current-menu-ancestor a, &.current_page_item a, &:hover > a {
+			color: #0FBE7C;
+		}
+	}
+}
+
+/* =FOOTER WIDGET AREA
+----------------------------------------------- */
+
+.footer-widgets-wrapper {
+	background-color: #333333;
+	border-top: 1px solid #EAEAEA;
+}
+
+.footer-widgets-area {
+	padding-top: 30px;
+	padding-bottom: 10px;
+	color: #999999;
+
+	.tg-one-fourth .widget-title {
+		text-align: left;
+	}
+
+	h3.widget-title {
+		color: #D5D5D5;
+	}
+
+	.tg-one-half p,
+	.tg-one-third p,
+	.tg-one-fourth p {
+		text-align: left;
+		color: #999999;
+	}
+
+	a {
+		color: #D5D5D5 !important;
+
+		&:hover {
+			color: #0FBE7C !important;
+		}
+	}
+}
+
+#colophon {
+	font-size: 14px;
+	line-height: 18px;
+
+	.widget {
+		padding-bottom: 25px;
+	}
+
+	.widget-title {
+		font-size: 22px;
+		line-height: 32px;
+	}
+
+	p {
+		font-size: 14px;
+		line-height: 18px;
+	}
+}
+
+/* =FOOTER WIDGET AREA
+----------------------------------------------- */
+
+.footer-widgets-wrapper {
+	background-color: #333333;
+	border-top: 1px solid #EAEAEA;
+}
+
+.footer-widgets-area {
+	padding-top: 30px;
+	padding-bottom: 10px;
+	color: #999999;
+
+	h3.widget-title {
+		color: #d5d5d5;
+		text-align: left;
+	}
+
+	.tg-one-fourth p {
+		text-align: left;
+		color: #999999;
+	}
+
+	a {
+		color: #D5D5D5;
+
+		&:hover {
+			color: #0FBE7C;
+		}
+	}
+}
+
+#colophon {
+	.widget {
+		padding-bottom: 25px;
+	}
+
+	.widget-title {
+		font-size: 22px;
+		line-height: 32px;
+	}
+
+	font-size: 14px;
+	line-height: 18px;
+
+	p {
+		font-size: 14px;
+		line-height: 18px;
+	}
+}
+
+/* =FOOTER SOCKET AREA
+----------------------------------------------- */
+
+.footer-socket-wrapper {
+	padding: 10px 0px;
+	background-color: #F8F8F8;
+	border-top: 1px solid #EAEAEA;
+}
+
+.footer-socket-area {
+	width: 100%;
+}
+
+.footer-socket-wrapper {
+	.copyright {
+		color: #666666;
+		max-width: 50%;
+		float: left;
+		font-size: 12px;
+
+		a {
+			color: #666666;
+
+			&:hover {
+				color: #0FBE7C;
+			}
+		}
+	}
+
+	.small-menu {
+		float: right;
+
+		a {
+			padding-top: 0;
+		}
+
+		ul li ul {
+			top: 21px;
+		}
+	}
+}

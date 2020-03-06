@@ -1,27 +1,50 @@
-[Fri Aug 05 22:44:53.520818 2016] [core:warn] [pid 8572:tid 352] AH00098: pid file C:/Users/haneef.puttur/Desktop/portapress-master (1)/portapress-master/bin/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
-[Fri Aug 05 22:44:53.770418 2016] [ssl:warn] [pid 8572:tid 352] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
-[Fri Aug 05 22:44:54.737620 2016] [mpm_winnt:notice] [pid 8572:tid 352] AH00455: Apache/2.4.10 (Win32) OpenSSL/1.0.1h PHP/5.4.31 configured -- resuming normal operations
-[Fri Aug 05 22:44:54.737620 2016] [mpm_winnt:notice] [pid 8572:tid 352] AH00456: Apache Haus VC9 Server built: Jul 15 2014 20:34:18
-[Fri Aug 05 22:44:54.737620 2016] [core:notice] [pid 8572:tid 352] AH00094: Command line: 'C:\\Users\\haneef.puttur\\Desktop\\portapress-master (1)\\portapress-master\\bin\\apache\\bin\\httpd.exe -d C:/Users/haneef.puttur/Desktop/portapress-master (1)/portapress-master/bin/apache -f C:\\Users\\haneef.puttur\\Desktop\\portapress-master (1)\\portapress-master\\bin\\apache\\conf\\httpd.conf'
-[Fri Aug 05 22:44:54.737620 2016] [mpm_winnt:notice] [pid 8572:tid 352] AH00418: Parent: Created child process 8060
-AH00548: NameVirtualHost has no effect and will be removed in the next release C:/Users/haneef.puttur/Desktop/portapress-master (1)/portapress-master/bin/apache/conf/httpd.conf:264
-[Fri Aug 05 22:44:55.987622 2016] [ssl:warn] [pid 8060:tid 364] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
-[Fri Aug 05 22:44:56.190423 2016] [mpm_winnt:notice] [pid 8060:tid 364] AH00354: Child: Starting 64 worker threads.
-[Fri Aug 05 23:08:33.289492 2016] [core:warn] [pid 8360:tid 352] AH00098: pid file C:/Users/haneef.puttur/Documents/GitHub/portapress/bin/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
-[Fri Aug 05 23:08:33.548507 2016] [ssl:warn] [pid 8360:tid 352] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
-[Fri Aug 05 23:08:33.951530 2016] [mpm_winnt:notice] [pid 8360:tid 352] AH00455: Apache/2.4.10 (Win32) OpenSSL/1.0.1h PHP/5.4.31 configured -- resuming normal operations
-[Fri Aug 05 23:08:33.951530 2016] [mpm_winnt:notice] [pid 8360:tid 352] AH00456: Apache Haus VC9 Server built: Jul 15 2014 20:34:18
-[Fri Aug 05 23:08:33.951530 2016] [core:notice] [pid 8360:tid 352] AH00094: Command line: 'C:\\Users\\haneef.puttur\\Documents\\GitHub\\portapress\\bin\\apache\\bin\\httpd.exe -d C:/Users/haneef.puttur/Documents/GitHub/portapress/bin/apache -f C:\\Users\\haneef.puttur\\Documents\\GitHub\\portapress\\bin\\apache\\conf\\httpd.conf'
-[Fri Aug 05 23:08:33.963530 2016] [mpm_winnt:notice] [pid 8360:tid 352] AH00418: Parent: Created child process 6944
-AH00548: NameVirtualHost has no effect and will be removed in the next release C:/Users/haneef.puttur/Documents/GitHub/portapress/bin/apache/conf/httpd.conf:264
-[Fri Aug 05 23:08:35.082594 2016] [ssl:warn] [pid 6944:tid 364] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
-[Fri Aug 05 23:08:35.107596 2016] [mpm_winnt:notice] [pid 6944:tid 364] AH00354: Child: Starting 64 worker threads.
-[Sat Jul 01 22:28:11.671316 2017] [core:warn] [pid 3924:tid 356] AH00098: pid file C:/Users/haneef.puttur/Downloads/portapress-master/portapress-master/bin/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
-[Sat Jul 01 22:28:11.925917 2017] [ssl:warn] [pid 3924:tid 356] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
-[Sat Jul 01 22:28:12.177918 2017] [mpm_winnt:notice] [pid 3924:tid 356] AH00455: Apache/2.4.10 (Win32) OpenSSL/1.0.1h PHP/5.4.31 configured -- resuming normal operations
-[Sat Jul 01 22:28:12.177918 2017] [mpm_winnt:notice] [pid 3924:tid 356] AH00456: Apache Haus VC9 Server built: Jul 15 2014 20:34:18
-[Sat Jul 01 22:28:12.177918 2017] [core:notice] [pid 3924:tid 356] AH00094: Command line: 'C:\\Users\\haneef.puttur\\Downloads\\portapress-master\\portapress-master\\bin\\apache\\bin\\httpd.exe -d C:/Users/haneef.puttur/Downloads/portapress-master/portapress-master/bin/apache -f C:\\Users\\haneef.puttur\\Downloads\\portapress-master\\portapress-master\\bin\\apache\\conf\\httpd.conf'
-[Sat Jul 01 22:28:12.177918 2017] [mpm_winnt:notice] [pid 3924:tid 356] AH00418: Parent: Created child process 5552
-AH00548: NameVirtualHost has no effect and will be removed in the next release C:/Users/haneef.puttur/Downloads/portapress-master/portapress-master/bin/apache/conf/httpd.conf:264
-[Sat Jul 01 22:28:13.352321 2017] [ssl:warn] [pid 5552:tid 368] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
-[Sat Jul 01 22:28:13.399121 2017] [mpm_winnt:notice] [pid 5552:tid 368] AH00354: Child: Starting 64 worker threads.
+[Fri Mar 06 15:59:18.832812 2020] [ssl:warn] [pid 16920:tid 744] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Mar 06 15:59:18.835437 2020] [ssl:warn] [pid 16920:tid 744] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Mar 06 15:59:19.130101 2020] [ssl:warn] [pid 16920:tid 744] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Fri Mar 06 15:59:19.130101 2020] [ssl:warn] [pid 16920:tid 744] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Mar 06 15:59:19.130101 2020] [ssl:warn] [pid 16920:tid 744] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Mar 06 15:59:19.239921 2020] [mpm_winnt:notice] [pid 16920:tid 744] AH00455: Apache/2.4.18 (Win32) OpenSSL/1.0.2f PHP/5.6.18 configured -- resuming normal operations
+[Fri Mar 06 15:59:19.239921 2020] [mpm_winnt:notice] [pid 16920:tid 744] AH00456: Server built: Jan 28 2016 09:58:25
+[Fri Mar 06 15:59:19.242441 2020] [core:notice] [pid 16920:tid 744] AH00094: Command line: 'D:\\Google Drive\\MHANEEF\\Downloads\\UwAmp\\UwAmp\\bin\\apache\\bin\\httpd.exe -d D:/Google Drive/MHANEEF/Downloads/UwAmp/UwAmp/bin/apache -f D:\\Google Drive\\MHANEEF\\Downloads\\UwAmp\\UwAmp\\bin\\apache\\conf\\httpd.conf'
+[Fri Mar 06 15:59:19.253276 2020] [mpm_winnt:notice] [pid 16920:tid 744] AH00418: Parent: Created child process 1356
+[Fri Mar 06 15:59:21.011628 2020] [ssl:warn] [pid 1356:tid 732] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Mar 06 15:59:21.013624 2020] [ssl:warn] [pid 1356:tid 732] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Mar 06 15:59:21.342792 2020] [ssl:warn] [pid 1356:tid 732] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Fri Mar 06 15:59:21.342792 2020] [ssl:warn] [pid 1356:tid 732] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Mar 06 15:59:21.342792 2020] [ssl:warn] [pid 1356:tid 732] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Mar 06 15:59:21.451673 2020] [mpm_winnt:notice] [pid 1356:tid 732] AH00354: Child: Starting 64 worker threads.
+[Fri Mar 06 15:59:27.591050 2020] [mpm_winnt:crit] [pid 1356:tid 732] AH02538: Child: Parent process exited abruptly. Child process is ending
+[Fri Mar 06 15:59:46.779785 2020] [ssl:warn] [pid 11876:tid 716] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Mar 06 15:59:46.780810 2020] [ssl:warn] [pid 11876:tid 716] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Mar 06 15:59:46.845508 2020] [core:warn] [pid 11876:tid 716] AH00098: pid file D:/Google Drive/MHANEEF/Downloads/UwAmp/UwAmp/bin/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Fri Mar 06 15:59:47.049400 2020] [ssl:warn] [pid 11876:tid 716] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Fri Mar 06 15:59:47.049400 2020] [ssl:warn] [pid 11876:tid 716] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Mar 06 15:59:47.049400 2020] [ssl:warn] [pid 11876:tid 716] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Mar 06 15:59:47.177942 2020] [mpm_winnt:notice] [pid 11876:tid 716] AH00455: Apache/2.4.18 (Win32) OpenSSL/1.0.2f PHP/7.0.3 configured -- resuming normal operations
+[Fri Mar 06 15:59:47.177942 2020] [mpm_winnt:notice] [pid 11876:tid 716] AH00456: Server built: Jan 28 2016 09:58:25
+[Fri Mar 06 15:59:47.177942 2020] [core:notice] [pid 11876:tid 716] AH00094: Command line: 'D:\\Google Drive\\MHANEEF\\Downloads\\UwAmp\\UwAmp\\bin\\apache\\bin\\httpd.exe -d D:/Google Drive/MHANEEF/Downloads/UwAmp/UwAmp/bin/apache -f D:\\Google Drive\\MHANEEF\\Downloads\\UwAmp\\UwAmp\\bin\\apache\\conf\\httpd.conf'
+[Fri Mar 06 15:59:47.187730 2020] [mpm_winnt:notice] [pid 11876:tid 716] AH00418: Parent: Created child process 20216
+[Fri Mar 06 15:59:48.527324 2020] [ssl:warn] [pid 20216:tid 740] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Mar 06 15:59:48.528361 2020] [ssl:warn] [pid 20216:tid 740] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Mar 06 15:59:48.796079 2020] [ssl:warn] [pid 20216:tid 740] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Fri Mar 06 15:59:48.796079 2020] [ssl:warn] [pid 20216:tid 740] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Mar 06 15:59:48.796079 2020] [ssl:warn] [pid 20216:tid 740] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Mar 06 15:59:48.904824 2020] [mpm_winnt:notice] [pid 20216:tid 740] AH00354: Child: Starting 64 worker threads.
+[Fri Mar 06 16:04:23.738572 2020] [mpm_winnt:crit] [pid 20216:tid 740] AH02538: Child: Parent process exited abruptly. Child process is ending
+[Fri Mar 06 16:05:31.167645 2020] [ssl:warn] [pid 5888:tid 716] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Mar 06 16:05:31.169742 2020] [ssl:warn] [pid 5888:tid 716] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Mar 06 16:05:31.230944 2020] [core:warn] [pid 5888:tid 716] AH00098: pid file D:/Google Drive/MHANEEF/Downloads/UwAmp/UwAmp/bin/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Fri Mar 06 16:05:31.442196 2020] [ssl:warn] [pid 5888:tid 716] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Fri Mar 06 16:05:31.442196 2020] [ssl:warn] [pid 5888:tid 716] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Mar 06 16:05:31.442196 2020] [ssl:warn] [pid 5888:tid 716] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Mar 06 16:05:31.497642 2020] [mpm_winnt:notice] [pid 5888:tid 716] AH00455: Apache/2.4.18 (Win32) OpenSSL/1.0.2f PHP/7.0.3 configured -- resuming normal operations
+[Fri Mar 06 16:05:31.497642 2020] [mpm_winnt:notice] [pid 5888:tid 716] AH00456: Server built: Jan 28 2016 09:58:25
+[Fri Mar 06 16:05:31.497642 2020] [core:notice] [pid 5888:tid 716] AH00094: Command line: 'D:\\Google Drive\\MHANEEF\\Downloads\\UwAmp\\UwAmp\\bin\\apache\\bin\\httpd.exe -d D:/Google Drive/MHANEEF/Downloads/UwAmp/UwAmp/bin/apache -f D:\\Google Drive\\MHANEEF\\Downloads\\UwAmp\\UwAmp\\bin\\apache\\conf\\httpd.conf'
+[Fri Mar 06 16:05:31.507534 2020] [mpm_winnt:notice] [pid 5888:tid 716] AH00418: Parent: Created child process 23972
+[Fri Mar 06 16:05:33.080416 2020] [ssl:warn] [pid 23972:tid 728] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Mar 06 16:05:33.082495 2020] [ssl:warn] [pid 23972:tid 728] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Mar 06 16:05:33.339729 2020] [ssl:warn] [pid 23972:tid 728] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Fri Mar 06 16:05:33.339729 2020] [ssl:warn] [pid 23972:tid 728] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Mar 06 16:05:33.339729 2020] [ssl:warn] [pid 23972:tid 728] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Mar 06 16:05:33.402095 2020] [mpm_winnt:notice] [pid 23972:tid 728] AH00354: Child: Starting 64 worker threads.
+[Fri Mar 06 16:22:19.580041 2020] [mpm_winnt:crit] [pid 23972:tid 728] AH02538: Child: Parent process exited abruptly. Child process is ending

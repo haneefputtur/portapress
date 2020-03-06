@@ -1,0 +1,15 @@
+@import 'variables/colors';
+@import 'global/common';
+.elementor {
+    @import 'navigations/links';
+    @import 'modules/title';
+    @import 'modules/team';
+    @import 'modules/counter';
+    @import 'modules/cta';
+    @import 'forms/buttons';
+    @import 'responsive/large';
+    @import 'responsive/medium';
+    @import 'responsive/small';
+    @import 'modules/grid-style';
+    @import 'modules/block-style';
+}

@@ -21,7 +21,7 @@ $scripts  = $header->getScripts();
 $scripts->addFile('server_user_groups.js');
 
 /**
- * Only allowed to superuser 
+ * Only allowed to superuser
  */
 if (! $GLOBALS['is_superuser']) {
     $response->addHTML(PMA_Message::error(__('No Privileges'))->getDisplay());
@@ -69,4 +69,3 @@ if (isset($_REQUEST['addUserGroup'])) {
 }
 
 $response->addHTML('</div>');
-?>
