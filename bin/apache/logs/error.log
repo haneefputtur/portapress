@@ -48,3 +48,122 @@
 [Fri Mar 06 16:05:33.339729 2020] [ssl:warn] [pid 23972:tid 728] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
 [Fri Mar 06 16:05:33.402095 2020] [mpm_winnt:notice] [pid 23972:tid 728] AH00354: Child: Starting 64 worker threads.
 [Fri Mar 06 16:22:19.580041 2020] [mpm_winnt:crit] [pid 23972:tid 728] AH02538: Child: Parent process exited abruptly. Child process is ending
+[Mon Jan 25 19:56:58.573540 2021] [ssl:warn] [pid 29632:tid 624] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 19:56:58.573540 2021] [ssl:warn] [pid 29632:tid 624] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Jan 25 19:56:58.644348 2021] [core:warn] [pid 29632:tid 624] AH00098: pid file C:/Users/mhaneef/source/repos/portapress/bin/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Jan 25 19:56:58.929585 2021] [ssl:warn] [pid 29632:tid 624] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Mon Jan 25 19:56:58.930583 2021] [ssl:warn] [pid 29632:tid 624] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 19:56:58.930583 2021] [ssl:warn] [pid 29632:tid 624] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Jan 25 19:57:00.274118 2021] [mpm_winnt:notice] [pid 29632:tid 624] AH00455: Apache/2.4.18 (Win32) OpenSSL/1.0.2f PHP/7.0.3 configured -- resuming normal operations
+[Mon Jan 25 19:57:00.274118 2021] [mpm_winnt:notice] [pid 29632:tid 624] AH00456: Server built: Jan 28 2016 09:58:25
+[Mon Jan 25 19:57:00.274118 2021] [core:notice] [pid 29632:tid 624] AH00094: Command line: 'C:\\Users\\mhaneef\\source\\repos\\portapress\\bin\\apache\\bin\\httpd.exe -d C:/Users/mhaneef/source/repos/portapress/bin/apache -f C:\\Users\\mhaneef\\source\\repos\\portapress\\bin\\apache\\conf\\httpd.conf'
+[Mon Jan 25 19:57:00.281099 2021] [mpm_winnt:notice] [pid 29632:tid 624] AH00418: Parent: Created child process 18512
+[Mon Jan 25 19:57:01.458951 2021] [ssl:warn] [pid 18512:tid 704] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 19:57:01.459948 2021] [ssl:warn] [pid 18512:tid 704] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Jan 25 19:57:01.813017 2021] [ssl:warn] [pid 18512:tid 704] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Mon Jan 25 19:57:01.815012 2021] [ssl:warn] [pid 18512:tid 704] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 19:57:01.815012 2021] [ssl:warn] [pid 18512:tid 704] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Jan 25 19:57:01.873855 2021] [mpm_winnt:notice] [pid 18512:tid 704] AH00354: Child: Starting 64 worker threads.
+[Mon Jan 25 19:59:57.593185 2021] [mpm_winnt:crit] [pid 18512:tid 704] AH02538: Child: Parent process exited abruptly. Child process is ending
+[Mon Jan 25 20:00:04.396970 2021] [ssl:warn] [pid 20732:tid 620] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:00:04.396970 2021] [ssl:warn] [pid 20732:tid 620] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Jan 25 20:00:04.460413 2021] [core:warn] [pid 20732:tid 620] AH00098: pid file C:/Users/mhaneef/source/repos/portapress/bin/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Jan 25 20:00:04.741678 2021] [ssl:warn] [pid 20732:tid 620] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Mon Jan 25 20:00:04.742676 2021] [ssl:warn] [pid 20732:tid 620] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:00:04.742676 2021] [ssl:warn] [pid 20732:tid 620] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'curl' (tried: C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\curl (The specified module could not be found.), C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\php_curl.dll (The specified procedure could not be found.)) in Unknown on line 0
+[Mon Jan 25 20:00:04.904986 2021] [mpm_winnt:notice] [pid 20732:tid 620] AH00455: Apache/2.4.18 (Win32) OpenSSL/1.0.2f PHP/7.2.7 configured -- resuming normal operations
+[Mon Jan 25 20:00:04.904986 2021] [mpm_winnt:notice] [pid 20732:tid 620] AH00456: Server built: Jan 28 2016 09:58:25
+[Mon Jan 25 20:00:04.904986 2021] [core:notice] [pid 20732:tid 620] AH00094: Command line: 'C:\\Users\\mhaneef\\source\\repos\\portapress\\bin\\apache\\bin\\httpd.exe -d C:/Users/mhaneef/source/repos/portapress/bin/apache -f C:\\Users\\mhaneef\\source\\repos\\portapress\\bin\\apache\\conf\\httpd.conf'
+[Mon Jan 25 20:00:04.911967 2021] [mpm_winnt:notice] [pid 20732:tid 620] AH00418: Parent: Created child process 19900
+[Mon Jan 25 20:00:05.969157 2021] [ssl:warn] [pid 19900:tid 704] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:00:05.969157 2021] [ssl:warn] [pid 19900:tid 704] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Jan 25 20:00:06.301269 2021] [ssl:warn] [pid 19900:tid 704] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Mon Jan 25 20:00:06.301269 2021] [ssl:warn] [pid 19900:tid 704] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:00:06.301269 2021] [ssl:warn] [pid 19900:tid 704] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'curl' (tried: C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\curl (The specified module could not be found.), C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\php_curl.dll (The specified procedure could not be found.)) in Unknown on line 0
+[Mon Jan 25 20:00:06.336175 2021] [mpm_winnt:notice] [pid 19900:tid 704] AH00354: Child: Starting 64 worker threads.
+[Mon Jan 25 20:02:02.134826 2021] [mpm_winnt:crit] [pid 19900:tid 704] AH02538: Child: Parent process exited abruptly. Child process is ending
+[Mon Jan 25 20:02:08.171618 2021] [ssl:warn] [pid 25584:tid 620] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:02:08.171618 2021] [ssl:warn] [pid 25584:tid 620] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Jan 25 20:02:08.232426 2021] [core:warn] [pid 25584:tid 620] AH00098: pid file C:/Users/mhaneef/source/repos/portapress/bin/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Jan 25 20:02:08.506073 2021] [ssl:warn] [pid 25584:tid 620] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Mon Jan 25 20:02:08.507070 2021] [ssl:warn] [pid 25584:tid 620] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:02:08.507070 2021] [ssl:warn] [pid 25584:tid 620] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'curl' (tried: C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\curl (The specified module could not be found.), C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\php_curl.dll (The specified procedure could not be found.)) in Unknown on line 0
+[Mon Jan 25 20:02:08.537988 2021] [mpm_winnt:notice] [pid 25584:tid 620] AH00455: Apache/2.4.18 (Win32) OpenSSL/1.0.2f PHP/7.2.7 configured -- resuming normal operations
+[Mon Jan 25 20:02:08.537988 2021] [mpm_winnt:notice] [pid 25584:tid 620] AH00456: Server built: Jan 28 2016 09:58:25
+[Mon Jan 25 20:02:08.537988 2021] [core:notice] [pid 25584:tid 620] AH00094: Command line: 'C:\\Users\\mhaneef\\source\\repos\\portapress\\bin\\apache\\bin\\httpd.exe -d C:/Users/mhaneef/source/repos/portapress/bin/apache -f C:\\Users\\mhaneef\\source\\repos\\portapress\\bin\\apache\\conf\\httpd.conf'
+[Mon Jan 25 20:02:08.545966 2021] [mpm_winnt:notice] [pid 25584:tid 620] AH00418: Parent: Created child process 23252
+[Mon Jan 25 20:02:09.646026 2021] [ssl:warn] [pid 23252:tid 700] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:02:09.646026 2021] [ssl:warn] [pid 23252:tid 700] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Jan 25 20:02:09.979135 2021] [ssl:warn] [pid 23252:tid 700] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Mon Jan 25 20:02:09.980132 2021] [ssl:warn] [pid 23252:tid 700] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:02:09.980132 2021] [ssl:warn] [pid 23252:tid 700] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'curl' (tried: C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\curl (The specified module could not be found.), C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\php_curl.dll (The specified procedure could not be found.)) in Unknown on line 0
+[Mon Jan 25 20:02:10.021024 2021] [mpm_winnt:notice] [pid 23252:tid 700] AH00354: Child: Starting 64 worker threads.
+[Mon Jan 25 20:02:17.592971 2021] [mpm_winnt:crit] [pid 23252:tid 700] AH02538: Child: Parent process exited abruptly. Child process is ending
+[Mon Jan 25 20:02:25.841640 2021] [ssl:warn] [pid 25200:tid 704] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:02:25.841640 2021] [ssl:warn] [pid 25200:tid 704] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Jan 25 20:02:25.901476 2021] [core:warn] [pid 25200:tid 704] AH00098: pid file C:/Users/mhaneef/source/repos/portapress/bin/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Jan 25 20:02:26.190152 2021] [ssl:warn] [pid 25200:tid 704] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Mon Jan 25 20:02:26.191149 2021] [ssl:warn] [pid 25200:tid 704] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:02:26.191149 2021] [ssl:warn] [pid 25200:tid 704] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'curl' (tried: C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\curl (The specified module could not be found.), C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\php_curl.dll (The specified procedure could not be found.)) in Unknown on line 0
+[Mon Jan 25 20:02:26.220072 2021] [mpm_winnt:notice] [pid 25200:tid 704] AH00455: Apache/2.4.18 (Win32) OpenSSL/1.0.2f PHP/7.2.7 configured -- resuming normal operations
+[Mon Jan 25 20:02:26.220072 2021] [mpm_winnt:notice] [pid 25200:tid 704] AH00456: Server built: Jan 28 2016 09:58:25
+[Mon Jan 25 20:02:26.220072 2021] [core:notice] [pid 25200:tid 704] AH00094: Command line: 'C:\\Users\\mhaneef\\source\\repos\\portapress\\bin\\apache\\bin\\httpd.exe -d C:/Users/mhaneef/source/repos/portapress/bin/apache -f C:\\Users\\mhaneef\\source\\repos\\portapress\\bin\\apache\\conf\\httpd.conf'
+[Mon Jan 25 20:02:26.227053 2021] [mpm_winnt:notice] [pid 25200:tid 704] AH00418: Parent: Created child process 9804
+[Mon Jan 25 20:02:27.365984 2021] [ssl:warn] [pid 9804:tid 704] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:02:27.365984 2021] [ssl:warn] [pid 9804:tid 704] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Jan 25 20:02:27.739830 2021] [ssl:warn] [pid 9804:tid 704] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Mon Jan 25 20:02:27.740827 2021] [ssl:warn] [pid 9804:tid 704] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:02:27.740827 2021] [ssl:warn] [pid 9804:tid 704] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'curl' (tried: C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\curl (The specified module could not be found.), C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\php_curl.dll (The specified procedure could not be found.)) in Unknown on line 0
+[Mon Jan 25 20:02:27.779723 2021] [mpm_winnt:notice] [pid 9804:tid 704] AH00354: Child: Starting 64 worker threads.
+[Mon Jan 25 20:03:25.634205 2021] [mpm_winnt:crit] [pid 9804:tid 704] AH02538: Child: Parent process exited abruptly. Child process is ending
+[Mon Jan 25 20:03:34.455429 2021] [ssl:warn] [pid 27992:tid 688] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:03:34.455429 2021] [ssl:warn] [pid 27992:tid 688] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Jan 25 20:03:34.527236 2021] [core:warn] [pid 27992:tid 688] AH00098: pid file C:/Users/mhaneef/source/repos/portapress/bin/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Jan 25 20:03:34.805460 2021] [ssl:warn] [pid 27992:tid 688] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Mon Jan 25 20:03:34.806458 2021] [ssl:warn] [pid 27992:tid 688] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:03:34.806458 2021] [ssl:warn] [pid 27992:tid 688] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'curl' (tried: C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\curl (The specified module could not be found.), C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\php_curl.dll (The specified procedure could not be found.)) in Unknown on line 0
+[Mon Jan 25 20:03:34.835380 2021] [mpm_winnt:notice] [pid 27992:tid 688] AH00455: Apache/2.4.18 (Win32) OpenSSL/1.0.2f PHP/7.2.7 configured -- resuming normal operations
+[Mon Jan 25 20:03:34.835380 2021] [mpm_winnt:notice] [pid 27992:tid 688] AH00456: Server built: Jan 28 2016 09:58:25
+[Mon Jan 25 20:03:34.835380 2021] [core:notice] [pid 27992:tid 688] AH00094: Command line: 'C:\\Users\\mhaneef\\source\\repos\\portapress\\bin\\apache\\bin\\httpd.exe -d C:/Users/mhaneef/source/repos/portapress/bin/apache -f C:\\Users\\mhaneef\\source\\repos\\portapress\\bin\\apache\\conf\\httpd.conf'
+[Mon Jan 25 20:03:34.844400 2021] [mpm_winnt:notice] [pid 27992:tid 688] AH00418: Parent: Created child process 22952
+[Mon Jan 25 20:03:35.905632 2021] [ssl:warn] [pid 22952:tid 712] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:03:35.905632 2021] [ssl:warn] [pid 22952:tid 712] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Jan 25 20:03:36.259894 2021] [ssl:warn] [pid 22952:tid 712] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Mon Jan 25 20:03:36.259894 2021] [ssl:warn] [pid 22952:tid 712] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:03:36.260915 2021] [ssl:warn] [pid 22952:tid 712] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'curl' (tried: C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\curl (The specified module could not be found.), C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\php_curl.dll (The specified procedure could not be found.)) in Unknown on line 0
+[Mon Jan 25 20:03:36.296818 2021] [mpm_winnt:notice] [pid 22952:tid 712] AH00354: Child: Starting 64 worker threads.
+[Mon Jan 25 20:09:15.658760 2021] [mpm_winnt:crit] [pid 22952:tid 712] AH02538: Child: Parent process exited abruptly. Child process is ending
+[Mon Jan 25 20:10:07.181302 2021] [ssl:warn] [pid 25124:tid 660] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:10:07.181302 2021] [ssl:warn] [pid 25124:tid 660] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Jan 25 20:10:07.236121 2021] [core:warn] [pid 25124:tid 660] AH00098: pid file C:/Users/mhaneef/source/repos/portapress/bin/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Jan 25 20:10:07.492507 2021] [ssl:warn] [pid 25124:tid 660] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Mon Jan 25 20:10:07.493503 2021] [ssl:warn] [pid 25124:tid 660] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:10:07.493503 2021] [ssl:warn] [pid 25124:tid 660] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'curl' (tried: C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\curl (The specified module could not be found.), C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\php_curl.dll (The specified procedure could not be found.)) in Unknown on line 0
+[Mon Jan 25 20:10:07.518437 2021] [mpm_winnt:notice] [pid 25124:tid 660] AH00455: Apache/2.4.18 (Win32) OpenSSL/1.0.2f PHP/7.2.7 configured -- resuming normal operations
+[Mon Jan 25 20:10:07.518437 2021] [mpm_winnt:notice] [pid 25124:tid 660] AH00456: Server built: Jan 28 2016 09:58:25
+[Mon Jan 25 20:10:07.518437 2021] [core:notice] [pid 25124:tid 660] AH00094: Command line: 'C:\\Users\\mhaneef\\source\\repos\\portapress\\bin\\apache\\bin\\httpd.exe -d C:/Users/mhaneef/source/repos/portapress/bin/apache -f C:\\Users\\mhaneef\\source\\repos\\portapress\\bin\\apache\\conf\\httpd.conf'
+[Mon Jan 25 20:10:07.521424 2021] [mpm_winnt:notice] [pid 25124:tid 660] AH00418: Parent: Created child process 26224
+[Mon Jan 25 20:10:08.554697 2021] [ssl:warn] [pid 26224:tid 672] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:10:08.554697 2021] [ssl:warn] [pid 26224:tid 672] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Jan 25 20:10:08.872916 2021] [ssl:warn] [pid 26224:tid 672] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Mon Jan 25 20:10:08.873914 2021] [ssl:warn] [pid 26224:tid 672] AH01906: main-serveur:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 25 20:10:08.873914 2021] [ssl:warn] [pid 26224:tid 672] AH01909: main-serveur:443:0 server certificate does NOT include an ID which matches the server name
+PHP Warning:  PHP Startup: Unable to load dynamic library 'curl' (tried: C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\curl (The specified module could not be found.), C:/Users/mhaneef/source/repos/portapress/bin/php/php-7.2.7/ext\\php_curl.dll (The specified procedure could not be found.)) in Unknown on line 0
+[Mon Jan 25 20:10:08.907832 2021] [mpm_winnt:notice] [pid 26224:tid 672] AH00354: Child: Starting 64 worker threads.
+[Mon Jan 25 20:10:16.508179 2021] [mpm_winnt:warn] [pid 26224:tid 1396] (OS 64)The specified network name is no longer available.  : AH00341: winnt_accept: Asynchronous AcceptEx failed.
+[Mon Jan 25 20:10:16.509176 2021] [mpm_winnt:warn] [pid 26224:tid 1396] (OS 64)The specified network name is no longer available.  : AH00341: winnt_accept: Asynchronous AcceptEx failed.
+[Mon Jan 25 20:10:16.509176 2021] [mpm_winnt:warn] [pid 26224:tid 1396] (OS 64)The specified network name is no longer available.  : AH00341: winnt_accept: Asynchronous AcceptEx failed.
+[Mon Jan 25 20:10:23.234909 2021] [mpm_winnt:crit] [pid 26224:tid 672] AH02538: Child: Parent process exited abruptly. Child process is ending
+[Mon Jan 25 20:10:23.234909 2021] [mpm_winnt:warn] [pid 26224:tid 1396] (OS 995)The I/O operation has been aborted because of either a thread exit or an application request.  : AH00341: winnt_accept: Asynchronous AcceptEx failed.
+[Mon Jan 25 20:10:23.234909 2021] [mpm_winnt:warn] [pid 26224:tid 1476] (OS 995)The I/O operation has been aborted because of either a thread exit or an application request.  : AH00341: winnt_accept: Asynchronous AcceptEx failed.
+[Mon Jan 25 20:10:23.234909 2021] [mpm_winnt:warn] [pid 26224:tid 1516] (OS 995)The I/O operation has been aborted because of either a thread exit or an application request.  : AH00341: winnt_accept: Asynchronous AcceptEx failed.
+[Mon Jan 25 20:10:23.234909 2021] [mpm_winnt:warn] [pid 26224:tid 1632] (OS 995)The I/O operation has been aborted because of either a thread exit or an application request.  : AH00341: winnt_accept: Asynchronous AcceptEx failed.

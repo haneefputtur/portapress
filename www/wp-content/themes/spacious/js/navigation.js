@@ -166,16 +166,16 @@
 			    branding              = document.getElementById( 'header-left-section' ),
 			    headerAction          = document.querySelector( '.header-action' ),
 			    navigation            = document.getElementById( 'site-navigation' ),
-			    mainWidth             = mainWrapper.offsetWidth,
-			    brandWidth            = branding.offsetWidth,
-			    navWidth              = navigation.offsetWidth,
-			    headerActionWidth     = headerAction.offsetWidth,
+			    mainWidth             = mainWrapper ? mainWrapper.offsetWidth : 0,
+			    brandWidth            = branding ? branding.offsetWidth : 0,
+			    navWidth              = navigation ? navigation.offsetWidth : 0,
+			    headerActionWidth     = headerAction ? headerAction.offsetWidth: 0,
 			    isExtra               = ( brandWidth + navWidth + headerActionWidth ) > mainWidth,
-			    more                  = navigation.getElementsByClassName( 'tg-menu-extras-wrap' )[0],
-			    headerDisplayTypeFour = document.getElementById( 'spacious-header-display-four' );
+			    more                  = navigation ? navigation.getElementsByClassName( 'tg-menu-extras-wrap' )[0] : '',
+			    headerDisplayTypeFour = document.getElementsByClassName( 'spacious-header-display-four' )[0];
 
 			// Check for header style 4.
-			if ( headerDisplayTypeFour !== null ) {
+			if ( headerDisplayTypeFour ) {
 				isExtra = ( navWidth + headerActionWidth ) >= mainWidth;
 			}
 
@@ -199,16 +199,14 @@
 			if ( ! isExtra ) {
 				more.parentNode.removeChild( more );
 			} else {
-				var widthToBe, headerAction, buttons, headerActionWidth, buttonWidth, moreWidth;
+				var widthToBe, buttons, buttonWidth, moreWidth;
 
-				widthToBe = mainWidth - brandWidth - headerActionWidth;
+				widthToBe = mainWidth - headerActionWidth;
 
-				// Check for header style 4.
-				if ( headerDisplayTypeFour !== null ) {
-					widthToBe = mainWidth - headerActionWidth;
+				if ( ! headerDisplayTypeFour ) {
+					widthToBe = widthToBe - brandWidth;
 				}
 
-				headerAction = navigation.getElementsByClassName( 'header-action' )[0];
 				buttons      = navigation.getElementsByClassName( 'tg-header-button-wrap' )[0];
 				buttonWidth  = buttons ? Dimension( buttons ) : 0;
 				moreWidth    = more ? Dimension( more ) : 0;
@@ -219,7 +217,7 @@
 
 				// Returns first children of a node.
 				function getChildNodes( node ) {
-					var children = new Array();
+					var children = [];
 
 					for ( var child in node.childNodes ) {
 						if ( typeof node !== 'undefined' ) {
@@ -262,12 +260,11 @@
 					}
 				}
 
-				var newNavWidth = newNavWidth + ( buttonWidth + moreWidth ) - 30,
+				var newNavWidth = newNavWidth + ( buttonWidth + moreWidth ),
 				    extraWrap   = document.getElementById( 'tg-menu-extras' );
 
-				// Check for header style 3 and 4.
-				if ( headerDisplayTypeFour !== null ) {
-					newNavWidth = navWidth - headerActionWidth;
+				if ( ! headerDisplayTypeFour ) {
+					newNavWidth = newNavWidth - 30;
 				}
 
 				navigation.style.width = newNavWidth + 'px';

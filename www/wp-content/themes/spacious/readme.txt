@@ -11,9 +11,9 @@ External resources linked to the theme.
   Licensed under SIL Open Font License, 1.1 http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 
 Resources packed within the theme.
+* Images on screenshot is from https://pxhere.com/ link. License: Creative Commons Zero (CC0)
 * Genericons by Joen Asmussen http://genericons.com/
   Licensed under the GPL, version 2 or later http://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
-* Image in the screenshot is from public domain http://unsplash.com/ link: unsplash.com/post/53469911317/download-by-aleks-dorohovich
 * HTML5 Shiv @afarkas @jdalton @jon_neal @rem | MIT/GPL2 Licensed
 * The script jquery.cycle.all.js is dual licensed under GPL & MIT
 * Other custom js files are our own creation and is licensed under the same license as this theme.
@@ -46,8 +46,65 @@ and we will include it within the theme from next version update.
 /**********************************************************/
 
 == Changelog ==
+== Version 1.9.0 - 2021-01-18
+* Refactor - Customize setting and control 
+* Modify - Theme options now uses Customize API instead of Options API.
+
+= Version 1.8.3 - 2020-12-21 =
+* Fix - Custom customize editor control not working since WordPress 5.6
+
+= Version 1.8.2 - 2020-12-15 =
+* Tweak - Update footer credit link with `rel="nofollow"` attributes.
+
+= Version 1.8.1 - 2020-10-12 =
+Fix - Header button text displaying text as url
+
+= Version 1.8.0 - 2020-10-02  =
+* Fix - RTL design issues.
+
+= Version 1.7.9 - 2020-09-24  =
+* Fix - Last menu with sub-menu on hover displays the sub-menu always.
+* Fix - PHP warning message on slider images on certain condition.
+* Tweak - Deprecate Custom CSS customize option provided via theme.
+
+= Version 1.7.8 - 2020-09-11  =
+* Refactor - Customize options re-arrangement
+* Tweak - Updated `Tested up to` to 5.5
+* Remove - Missed repeated unrequired CSS code
+
+= Version 1.7.7 - 2020-08-27  =
+* Added - New Demo (Spacious Farm)- Use this Spacious demo to create your farm or agricultural website.
+* Remove - TGMPA library to recommend plugins.
+* Remove - Repeated unrequired CSS code
+
+= Version 1.7.6 - 2020-08-08 =
+* Tweak       - Child theme compatibility for spacious_hex2rgb function.
+* Enhancement - Links CSS transition.
+* Remove      - Unused codes.
+
+= Version 1.7.5 - 2020-07-27 =
+* Added - New Demo (Spacious Band)- Use this Spacious demo to create a music band website for your music enthusiasts.
+* Fix - File not found: theme-review.css on admin pages.
+* Remove - Unwanted admin page.
+
+= Version 1.7.4 - 2020-07-21 =
+* Fix - Header info text output issue while changing in customizer.
+* Fix - Theme name and version in the admin dashboard while child theme active.
+
+= Version 1.7.3 - 2020-06-19 =
+* Enhancement - Gutenberg compatibility.
+* Tweak - Add more Google Fonts.
+* Added - New Demo (Spacious Vet)- Use this Spacious demo to create your pet-friendly vet website.
+* Added - New Demo (Spacious Event )- Use this Spacious demo if you want to create an event website.
+* Remove - Unrequired deprecated demo config for theme demo lists.
+
+= Version 1.7.2 - 2020-05-27 =
+* Fix - JS error while certain header HTML element not rendered.
+* Tweak - Added new required header fields for style.css.
+* Tweak - Add and improve theme-related notices.
+
 = Version 1.7.1 - 2020-02-19 =
-* Tweak -Refactor theme page according to WordPress theme guidelines.
+* Tweak - Refactor theme page according to WordPress theme guidelines.
 
 = Version 1.7.0 - 2020-02-19 =
 * Tweak - Minor Enhancement.

@@ -35,11 +35,11 @@ function spacious_content_width() {
 		$layout_meta = 'default_layout';
 	}
 
-	$spacious_default_layout = spacious_options( 'default_layout', 'right_sidebar' );
+	$spacious_default_layout = get_theme_mod( 'default_layout', 'right_sidebar' );
 
 	if ( $layout_meta == 'default_layout' ) {
 
-		if ( ( spacious_options( 'spacious_site_layout', 'box_1218px' ) == 'box_978px' ) || ( spacious_options( 'spacious_site_layout', 'box_1218px' ) == 'wide_978px' ) ) {
+		if ( ( get_theme_mod( 'spacious_site_layout', 'box_1218px' ) == 'box_978px' ) || ( get_theme_mod( 'spacious_site_layout', 'box_1218px' ) == 'wide_978px' ) ) {
 			if ( $spacious_default_layout == 'no_sidebar_full_width' ) {
 				$content_width = 978; /* pixels */
 			} else {
@@ -51,7 +51,7 @@ function spacious_content_width() {
 			$content_width = 750; /* pixels */
 		}
 
-	} elseif ( ( spacious_options( 'spacious_site_layout', 'box_1218px' ) == 'box_978px' ) || ( spacious_options( 'spacious_site_layout', 'box_1218px' ) == 'wide_978px' ) ) {
+	} elseif ( ( get_theme_mod( 'spacious_site_layout', 'box_1218px' ) == 'box_978px' ) || ( get_theme_mod( 'spacious_site_layout', 'box_1218px' ) == 'wide_978px' ) ) {
 		if ( $layout_meta == 'no_sidebar_full_width' ) {
 			$content_width = 978; /* pixels */
 		} else {
@@ -135,8 +135,14 @@ if ( ! function_exists( 'spacious_setup' ) ) :
 		// Support for selective refresh widgets in Customizer
 		add_theme_support( 'customize-selective-refresh-widgets' );
 
-		// Gutenberg layout support.
+		// Gutenberg wide layout support.
 		add_theme_support( 'align-wide' );
+
+		// Gutenberg block styles support.
+		add_theme_support( 'wp-block-styles' );
+
+		// Gutenberg responsive embeds support.
+		add_theme_support( 'responsive-embeds' );
 
 		// Define and register starter content to showcase the theme on new sites.
 		$starter_content = array(
@@ -353,7 +359,7 @@ endif;
 add_action( 'after_setup_theme', 'spacious_setup' );
 
 // Theme version.
-$spacious_theme = wp_get_theme();
+$spacious_theme = wp_get_theme('spacious');
 define( 'SPACIOUS_THEME_VERSION', $spacious_theme->get( 'Version' ) );
 
 /**
@@ -395,25 +401,28 @@ define( 'SPACIOUS_ADMIN_CSS_URL', SPACIOUS_ADMIN_URL . '/css' );
 /** Load functions */
 require_once SPACIOUS_INCLUDES_DIR . '/custom-header.php';
 require_once SPACIOUS_INCLUDES_DIR . '/functions.php';
-require_once SPACIOUS_INCLUDES_DIR . '/customizer.php';
 require_once SPACIOUS_INCLUDES_DIR . '/header-functions.php';
+require_once( SPACIOUS_INCLUDES_DIR . '/customizer/class-spacious-customizer.php' );
+require_once( SPACIOUS_INCLUDES_DIR . '/customizer/class-spacious-customizer-partials.php' );
 
 require_once SPACIOUS_ADMIN_DIR . '/meta-boxes.php';
+require_once SPACIOUS_INCLUDES_DIR . '/enqueue-scripts.php';
+require_once SPACIOUS_INCLUDES_DIR . '/class-spacious-dynamic-css.php';
+require_once SPACIOUS_INCLUDES_DIR . '/migration.php';
+
+/** Load demo import migration scripts. */
+require_once SPACIOUS_INCLUDES_DIR . '/demo-import-migration.php';
+
 
 /** Load Widgets and Widgetized Area */
 require_once SPACIOUS_WIDGETS_DIR . '/widgets.php';
+
+define( 'SPACIOUS_CUSTOMIZER_DIR', SPACIOUS_INCLUDES_DIR . '/customizer' );
 
 /**
  * Detect plugin. For use on Front End only.
  */
 include_once ABSPATH . 'wp-admin/includes/plugin.php';
-
-/**
- * Load Demo Importer Configs.
- */
-if ( class_exists( 'TG_Demo_Importer' ) ) {
-	require_once get_template_directory() . '/inc/demo-config.php';
-}
 
 /**
  * Assign the Spacious version to a variable.
@@ -425,17 +434,14 @@ $spacious_version = $theme['Version'];
  * Calling in the admin area for the Welcome Page as well as for the new theme notice too.
  */
 if ( is_admin() ) {
-	require_once get_template_directory() . '/inc/admin/class-spacious-admin.php';
+	require get_template_directory() . '/inc/admin/class-spacious-admin.php';
 	require get_template_directory() . '/inc/admin/class-spacious-dashboard.php';
 	require get_template_directory() . '/inc/admin/class-spacious-theme-review-notice.php';
 	require get_template_directory() . '/inc/admin/class-spacious-tdi-notice.php';
+	require get_template_directory() . '/inc/admin/class-spacious-welcome-notice.php';
+	require get_template_directory() . '/inc/admin/class-spacious-notice.php';
+	require get_template_directory() . '/inc/admin/class-spacious-upgrade-notice.php';
 }
-
-/**
- * Load TGMPA Configs.
- */
-require_once SPACIOUS_INCLUDES_DIR . '/tgm-plugin-activation/class-tgm-plugin-activation.php';
-require_once SPACIOUS_INCLUDES_DIR . '/tgm-plugin-activation/tgmpa-spacious.php';
 
 /**
  * Load the Spacious Toolkit file.
@@ -451,15 +457,12 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require_once get_template_directory() . '/inc/jetpack.php';
 }
 
-/**
- * Define Elementor partner ID
- */
-if ( ! defined( 'ELEMENTOR_PARTNER_ID' ) ) {
-	define( 'ELEMENTOR_PARTNER_ID', 2125 );
-}
-
 /** Add the Elementor compatibility file */
 if ( defined( 'ELEMENTOR_VERSION' ) ) {
 	require_once( SPACIOUS_INCLUDES_DIR . '/elementor/elementor.php' );
 }
 
+/**
+ * Load deprecated functions.
+ */
+require get_template_directory() . '/inc/deprecated/deprecated-functions.php';

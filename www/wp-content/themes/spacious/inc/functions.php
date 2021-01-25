@@ -12,136 +12,15 @@
 
 /****************************************************************************************/
 
-// Spacious theme options
-function spacious_options( $id, $default = false ) {
-	// assigning theme name
-	$themename = get_option( 'stylesheet' );
-	$themename = preg_replace( "/\W/", "_", strtolower( $themename ) );
-
-	// getting options value
-	$spacious_options = get_option( $themename );
-	if ( isset( $spacious_options[ $id ] ) ) {
-		return $spacious_options[ $id ];
-	} else {
-		return $default;
-	}
-}
-
-/****************************************************************************************/
-
 /**
- * Register jquery scripts
+ * Enqueue Google fonts and editor styles.
  */
-function spacious_scripts_styles_method() {
-	/**
-	 * Loads our main stylesheet.
-	 */
-	wp_enqueue_style( 'spacious_style', get_stylesheet_uri() );
-
-	if ( spacious_options( 'spacious_color_skin', 'light' ) == 'dark' ) {
-		wp_enqueue_style( 'spacious_dark_style', SPACIOUS_CSS_URL . '/dark.css' );
-	}
-
-	// Add Genericons, used in the main stylesheet.
-	wp_enqueue_style( 'spacious-genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.3.1' );
-
-	// Enqueue font-awesome style.
-	wp_enqueue_style( 'spacious-font-awesome', get_template_directory_uri() . '/font-awesome/css/font-awesome.min.css', array(), '4.7.0' );
-
-	$spacious_googlefonts = array();
-	array_push( $spacious_googlefonts, spacious_options( 'spacious_titles_font', 'Lato' ) );
-	array_push( $spacious_googlefonts, spacious_options( 'spacious_content_font', 'Lato' ) );
-
-	// Assign required fonts from database in array and make it unique.
-	$spacious_googlefonts          = array_unique( $spacious_googlefonts );
-	$spacious_google_fonts         = spacious_google_fonts();
-	$spacious_standard_fonts_array = spacious_standard_fonts_array();
-
-	// Check for the Google Fonts arrays.
-	foreach ( $spacious_googlefonts as $spacious_googlefont ) {
-
-		// If the array_key_exists for currently selected fonts,
-		// then only proceed to create new array to include,
-		// only the required Google fonts.
-		// For Standard fonts, no need for loading up the Google Fonts array.
-		if ( array_key_exists( $spacious_googlefont, $spacious_google_fonts ) ) {
-			$spacious_googlefont_lists[] = $spacious_googlefont;
-		}
-
-	}
-
-	// Check for the Standard Fonts arrays.
-	foreach ( $spacious_googlefonts as $spacious_standard_font ) {
-
-		// If the array_key_exists for currently selected fonts,
-		// then only proceed to create new array to include,
-		// only the required Standard fonts,
-		// in order to enqueue to Google Fonts only when,
-		// no theme_mods data is altered.
-		if ( array_key_exists( $spacious_standard_font, $spacious_standard_fonts_array ) ) {
-			$spacious_standard_font_lists[] = $spacious_standard_font;
-		}
-
-	}
-
-	// Proceed only if the Google Fonts array is available,
-	// to enqueue the Google Fonts.
-	if ( isset( $spacious_googlefont_lists ) ) :
-
-		$spacious_googlefont_lists = implode( "|", $spacious_googlefont_lists );
-
-		wp_register_style( 'spacious_googlefonts', '//fonts.googleapis.com/css?family=' . $spacious_googlefont_lists );
-		wp_enqueue_style( 'spacious_googlefonts' );
-
-	// Proceed only if the theme is installed first time,
-	// or the theme_mods data for typography is not changed.
-	elseif ( ! isset( $spacious_standard_font_lists ) ) :
-
-		$spacious_googlefonts = implode( "|", $spacious_googlefonts );
-
-		wp_register_style( 'spacious_googlefonts', '//fonts.googleapis.com/css?family=' . $spacious_googlefonts );
-		wp_enqueue_style( 'spacious_googlefonts' );
-
-	endif;
-
-	/**
-	 * Adds JavaScript to pages with the comment form to support
-	 * sites with threaded comments (when in use).
-	 */
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-
-	/**
-	 * Register JQuery cycle2 js file for slider.
-	 */
-	wp_register_script( 'jquery_cycle', SPACIOUS_JS_URL . '/jquery.cycle2.min.js', array( 'jquery' ), '2.1.6', true );
-	wp_register_script( 'jquery-swipe', SPACIOUS_JS_URL . '/jquery.cycle2.swipe.min.js', array( 'jquery' ), false, true );
-
-	wp_register_style( 'google_fonts', '//fonts.googleapis.com/css?family=Lato' );
-
-	/**
-	 * Enqueue Slider setup js file.
-	 */
-	if ( is_home() || is_front_page() && spacious_options( 'spacious_activate_slider', '0' ) == '1' ) {
-		wp_enqueue_script( 'jquery-swipe' );
-		wp_enqueue_script( 'jquery_cycle' );
-	}
-
-	wp_enqueue_script( 'spacious-navigation', SPACIOUS_JS_URL . '/navigation.js', array( 'jquery' ), false, true );
-
-	// Skip link focus fix JS enqueue.
-	wp_enqueue_script( 'spacious-skip-link-focus-fix', SPACIOUS_JS_URL . '/skip-link-focus-fix.js', array(), false, true );
-
-	wp_enqueue_script( 'spacious-custom', SPACIOUS_JS_URL . '/spacious-custom.js', array( 'jquery' ) );
-
-	wp_enqueue_script( 'html5', SPACIOUS_JS_URL . '/html5shiv.min.js', true );
-	wp_script_add_data( 'html5', 'conditional', 'lte IE 8' );
+function spacious_block_editor_styles() {
+	wp_enqueue_style( 'spacious-editor-googlefonts', '//fonts.googleapis.com/css2?family=Lato' );
+	wp_enqueue_style( 'spacious-block-editor-styles', get_template_directory_uri() . '/style-editor-block.css' );
 }
 
-add_action( 'wp_enqueue_scripts', 'spacious_scripts_styles_method' );
-
-/****************************************************************************************/
+add_action( 'enqueue_block_editor_assets', 'spacious_block_editor_styles', 1, 1 );
 
 /*
  * Display the related posts.
@@ -164,13 +43,13 @@ if ( ! function_exists( 'spacious_related_posts_function' ) ) {
 		);
 
 		// Related by categories.
-		if ( spacious_options( 'spacious_related_posts', 'categories' ) == 'categories' ) {
+		if ( get_theme_mod( 'spacious_related_posts', 'categories' ) == 'categories' ) {
 			$cats                 = wp_get_post_categories( $post->ID, array( 'fields' => 'ids' ) );
 			$args['category__in'] = $cats;
 		}
 
 		// Related by tags.
-		if ( spacious_options( 'spacious_related_posts', 'categories' ) == 'tags' ) {
+		if ( get_theme_mod( 'spacious_related_posts', 'categories' ) == 'tags' ) {
 			$tags            = wp_get_post_tags( $post->ID, array( 'fields' => 'ids' ) );
 			$args['tag__in'] = $tags;
 
@@ -270,11 +149,11 @@ function spacious_body_class( $classes ) {
 		$layout_meta = 'default_layout';
 	}
 
-	$spacious_default_layout      = spacious_options( 'spacious_default_layout', 'right_sidebar' );
-	$spacious_default_page_layout = spacious_options( 'spacious_pages_default_layout', 'right_sidebar' );
-	$spacious_default_post_layout = spacious_options( 'spacious_single_posts_default_layout', 'right_sidebar' );
-	$spacious_woo_archive_layout  = spacious_options( 'spacious_woo_archive_layout', 'no_sidebar_full_width' );
-	$spacious_woo_product_layout  = spacious_options( 'spacious_woo_product_layout', 'no_sidebar_full_width' );
+	$spacious_default_layout      = get_theme_mod( 'spacious_default_layout', 'right_sidebar' );
+	$spacious_default_page_layout = get_theme_mod( 'spacious_pages_default_layout', 'right_sidebar' );
+	$spacious_default_post_layout = get_theme_mod( 'spacious_single_posts_default_layout', 'right_sidebar' );
+	$spacious_woo_archive_layout  = get_theme_mod( 'spacious_woo_archive_layout', 'no_sidebar_full_width' );
+	$spacious_woo_product_layout  = get_theme_mod( 'spacious_woo_product_layout', 'no_sidebar_full_width' );
 
 	if ( $layout_meta == 'default_layout' ) {
 		if ( is_page() ) {
@@ -344,30 +223,30 @@ function spacious_body_class( $classes ) {
 		$classes[] = 'no-sidebar-content-stretched';
 	}
 
-	if ( spacious_options( 'spacious_new_menu', 0 ) == '1' ) {
+	if ( get_theme_mod( 'spacious_new_menu', 0 ) == '1' ) {
 		$classes[] = 'better-responsive-menu';
 	}
 
-	if ( spacious_options( 'spacious_archive_display_type', 'blog_large' ) == 'blog_medium_alternate' ) {
+	if ( get_theme_mod( 'spacious_archive_display_type', 'blog_large' ) == 'blog_medium_alternate' ) {
 		$classes[] = 'blog-alternate-medium';
 	}
 
-	if ( spacious_options( 'spacious_archive_display_type', 'blog_large' ) == 'blog_medium' ) {
+	if ( get_theme_mod( 'spacious_archive_display_type', 'blog_large' ) == 'blog_medium' ) {
 		$classes[] = 'blog-medium';
 	}
 
-	if ( spacious_options( 'spacious_site_layout', 'box_1218px' ) == 'wide_978px' ) {
+	if ( get_theme_mod( 'spacious_site_layout', 'box_1218px' ) == 'wide_978px' ) {
 		$classes[] = 'wide-978';
-	} elseif ( spacious_options( 'spacious_site_layout', 'box_1218px' ) == 'box_978px' ) {
+	} elseif ( get_theme_mod( 'spacious_site_layout', 'box_1218px' ) == 'box_978px' ) {
 		$classes[] = 'narrow-978';
-	} elseif ( spacious_options( 'spacious_site_layout', 'box_1218px' ) == 'wide_1218px' ) {
+	} elseif ( get_theme_mod( 'spacious_site_layout', 'box_1218px' ) == 'wide_1218px' ) {
 		$classes[] = 'wide-1218';
 	} else {
-		$classes[] = '';
+		$classes[] = 'narrow-1218';
 	}
 
 	// For header menu button enabled option.
-	$header_button_link_1 = spacious_options( 'spacious_header_button_one_link' );
+	$header_button_link_1 = get_theme_mod( 'spacious_header_button_one_link' );
 	if ( $header_button_link_1 ) {
 		$classes[] = 'spacious-menu-header-button-enabled';
 	}
@@ -399,9 +278,9 @@ if ( ! function_exists( 'spacious_sidebar_select' ) ) :
 			$layout_meta = 'default_layout';
 		}
 
-		$spacious_default_layout      = spacious_options( 'spacious_default_layout', 'right_sidebar' );
-		$spacious_default_page_layout = spacious_options( 'spacious_pages_default_layout', 'right_sidebar' );
-		$spacious_default_post_layout = spacious_options( 'spacious_single_posts_default_layout', 'right_sidebar' );
+		$spacious_default_layout      = get_theme_mod( 'spacious_default_layout', 'right_sidebar' );
+		$spacious_default_page_layout = get_theme_mod( 'spacious_pages_default_layout', 'right_sidebar' );
+		$spacious_default_post_layout = get_theme_mod( 'spacious_single_posts_default_layout', 'right_sidebar' );
 
 		if ( $layout_meta == 'default_layout' ) {
 			if ( is_page() ) {
@@ -437,14 +316,17 @@ endif;
  * Change hex code to RGB
  * Source: https://css-tricks.com/snippets/php/convert-hex-to-rgb/#comment-1052011
  */
-function spacious_hex2rgb( $hexstr ) {
-	$int = hexdec( $hexstr );
-	$rgb = array( "red" => 0xFF & ( $int >> 0x10 ), "green" => 0xFF & ( $int >> 0x8 ), "blue" => 0xFF & $int );
-	$r   = $rgb['red'];
-	$g   = $rgb['green'];
-	$b   = $rgb['blue'];
+if ( ! function_exists( 'spacious_hex2rgb' ) ) {
+	function spacious_hex2rgb( $hexstr ) {
+		$int = hexdec( str_replace( '#', '', $hexstr ) );
 
-	return "rgba($r,$g,$b, 0.85)";
+		$rgb = array( "red" => 0xFF & ( $int >> 0x10 ), "green" => 0xFF & ( $int >> 0x8 ), "blue" => 0xFF & $int );
+		$r   = $rgb['red'];
+		$g   = $rgb['green'];
+		$b   = $rgb['blue'];
+
+		return "rgba($r,$g,$b, 0.85)";
+	}
 }
 
 /**
@@ -453,7 +335,7 @@ function spacious_hex2rgb( $hexstr ) {
  */
 function spacious_darkcolor( $hex, $steps ) {
 	// Steps should be between -255 and 255. Negative = darker, positive = lighter
-	$steps = max( - 255, min( 255, $steps ) );
+	$steps = max( -255, min( 255, $steps ) );
 
 	// Normalize into a six character long hex string
 	$hex = str_replace( '#', '', $hex );
@@ -480,9 +362,9 @@ function spacious_darkcolor( $hex, $steps ) {
  * Hooks the Custom Internal CSS to head section
  */
 function spacious_custom_css() {
-	$primary_color         = spacious_options( 'spacious_primary_color', '#0FBE7C' );
+	$primary_color         = get_theme_mod( 'spacious_primary_color', '#0FBE7C' );
 	$primary_opacity       = spacious_hex2rgb( $primary_color );
-	$primary_dark          = spacious_darkcolor( $primary_color, - 50 );
+	$primary_dark          = spacious_darkcolor( $primary_color, -50 );
 	$spacious_internal_css = '';
 	if ( $primary_color != '#0FBE7C' ) {
 		$spacious_internal_css .= ' blockquote { border-left: 3px solid ' . $primary_color . '; }
@@ -530,11 +412,11 @@ function spacious_custom_css() {
 
 	/* Typography */
 	// Font family option.
-	if ( spacious_options( 'spacious_titles_font', 'Lato' ) != 'Lato' ) {
-		$spacious_internal_css .= ' h1, h2, h3, h4, h5, h6 { font-family: ' . spacious_options( 'spacious_titles_font', 'Lato' ) . '; }';
+	if ( get_theme_mod( 'spacious_titles_font', 'Lato' ) != 'Lato' ) {
+		$spacious_internal_css .= ' h1, h2, h3, h4, h5, h6 { font-family: ' . get_theme_mod( 'spacious_titles_font', 'Lato' ) . '; }';
 	}
-	if ( spacious_options( 'spacious_content_font', 'Lato' ) != 'Lato' ) {
-		$spacious_internal_css .= ' body, button, input, select, textarea, p, .entry-meta, .read-more, .more-link, .widget_testimonial .testimonial-author, #featured-slider .slider-read-more-button { font-family: ' . spacious_options( 'spacious_content_font', 'Lato' ) . '; }';
+	if ( get_theme_mod( 'spacious_content_font', 'Lato' ) != 'Lato' ) {
+		$spacious_internal_css .= ' body, button, input, select, textarea, p, .entry-meta, .read-more, .more-link, .widget_testimonial .testimonial-author, #featured-slider .slider-read-more-button { font-family: ' . get_theme_mod( 'spacious_content_font', 'Lato' ) . '; }';
 	}
 
 	if ( ! empty( $spacious_internal_css ) ) {
@@ -543,12 +425,6 @@ function spacious_custom_css() {
 		<?php
 	}
 
-	$spacious_custom_css = spacious_options( 'spacious_custom_css' );
-	if ( $spacious_custom_css && ! function_exists( 'wp_update_custom_css_post' ) ) {
-		?>
-		<style type="text/css"><?php echo $spacious_custom_css; ?></style>
-		<?php
-	}
 }
 
 add_action( 'wp_head', 'spacious_custom_css', 100 );
@@ -675,11 +551,11 @@ if ( ! function_exists( 'spacious_footer_copyright' ) ) :
 	function spacious_footer_copyright() {
 		$site_link = '<a href="' . esc_url( home_url( '/' ) ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" ><span>' . get_bloginfo( 'name', 'display' ) . '</span></a>';
 
-		$wp_link = '<a href="' . esc_url( 'https://wordpress.org' ) . '" target="_blank" title="' . esc_attr__( 'WordPress', 'spacious' ) . '"><span>' . __( 'WordPress', 'spacious' ) . '</span></a>';
+		$wp_link = '<a href="' . esc_url( 'https://wordpress.org' ) . '" target="_blank" title="' . esc_attr__( 'WordPress', 'spacious' ) . '" rel="nofollow"><span>' . __( 'WordPress', 'spacious' ) . '</span></a>';
 
-		$tg_link = '<a href="' . esc_url( 'https://themegrill.com/themes/spacious' ) . '" target="_blank" title="' . esc_attr__( 'ThemeGrill', 'spacious' ) . '" rel="author"><span>' . __( 'ThemeGrill', 'spacious' ) . '</span></a>';
+		$tg_link = '<a href="' . esc_url( 'https://themegrill.com/themes/spacious' ) . '" target="_blank" title="' . esc_attr__( 'Spacious', 'spacious' ) . '" rel="nofollow"><span>' . __( 'Spacious', 'spacious' ) . '</span></a>';
 
-		$default_footer_value = sprintf( __( 'Copyright &copy; %1$s %2$s.', 'spacious' ), date( 'Y' ), $site_link ) . ' ' . sprintf( __( 'Powered by %s.', 'spacious' ), $wp_link ) . ' ' . sprintf( __( 'Theme: %1$s by %2$s.', 'spacious' ), 'Spacious', $tg_link );
+		$default_footer_value = sprintf( __( 'Copyright &copy; %1$s %2$s.', 'spacious' ), date( 'Y' ), $site_link ) . ' ' .__('All rights reserved.', 'spacious' ). sprintf( __( ' Theme %1$s', 'spacious' ), $tg_link ) . ' ' . sprintf( __( 'by ThemeGrill. Powered by: %2$s.', 'spacious' ), 'Spacious', $wp_link );
 
 		$spacious_footer_copyright = '<div class="copyright">' . $default_footer_value . '</div>';
 		echo $spacious_footer_copyright;
@@ -694,13 +570,13 @@ if ( ! function_exists( 'spacious_posts_listing_display_type_select' ) ) :
 	 * Function to select the posts listing display type
 	 */
 	function spacious_posts_listing_display_type_select() {
-		if ( spacious_options( 'spacious_archive_display_type', 'blog_large' ) == 'blog_large' ) {
+		if ( get_theme_mod( 'spacious_archive_display_type', 'blog_large' ) == 'blog_large' ) {
 			$format = 'blog-image-large';
-		} elseif ( spacious_options( 'spacious_archive_display_type', 'blog_large' ) == 'blog_medium' ) {
+		} elseif ( get_theme_mod( 'spacious_archive_display_type', 'blog_large' ) == 'blog_medium' ) {
 			$format = 'blog-image-medium';
-		} elseif ( spacious_options( 'spacious_archive_display_type', 'blog_large' ) == 'blog_medium_alternate' ) {
+		} elseif ( get_theme_mod( 'spacious_archive_display_type', 'blog_large' ) == 'blog_medium_alternate' ) {
 			$format = 'blog-image-medium';
-		} elseif ( spacious_options( 'spacious_archive_display_type', 'blog_large' ) == 'blog_full_content' ) {
+		} elseif ( get_theme_mod( 'spacious_archive_display_type', 'blog_large' ) == 'blog_full_content' ) {
 			$format = 'blog-full-content';
 		} else {
 			$format = get_post_format();
@@ -780,7 +656,7 @@ if ( ! function_exists( 'spacious_entry_meta' ) ) :
 
 			edit_post_link( __( 'Edit', 'spacious' ), '<span class="edit-link">', '</span>' );
 
-			if ( ( ( spacious_options( 'spacious_archive_display_type', 'blog_large' ) != 'blog_full_content' ) && ! is_single() ) || is_archive() || is_search() ) {
+			if ( ( ( get_theme_mod( 'spacious_archive_display_type', 'blog_large' ) != 'blog_full_content' ) && ! is_single() ) || is_archive() || is_search() ) {
 				if ( $spacious_show_readmore ) { ?>
 					<span class="read-more-link">
 						<a class="read-more"
@@ -850,36 +726,6 @@ if ( ! function_exists( 'spacious_the_custom_logo' ) ) {
 }
 
 /**
- * Migrate any existing theme CSS codes added in Customize Options to the core option added in WordPress 4.7
- */
-function spacious_custom_css_migrate() {
-	if ( function_exists( 'wp_update_custom_css_post' ) ) {
-		$custom_css = spacious_options( 'spacious_custom_css' );
-		if ( $custom_css ) {
-			// assigning theme name
-			$themename = get_option( 'stylesheet' );
-			$themename = preg_replace( "/\W/", "_", strtolower( $themename ) );
-
-			$core_css = wp_get_custom_css(); // Preserve any CSS already added to the core option.
-			$return   = wp_update_custom_css_post( $core_css . $custom_css );
-
-			if ( ! is_wp_error( $return ) ) {
-				$theme_options = get_option( $themename );
-				// Remove the old theme_mod, so that the CSS is stored in only one place moving forward.
-				if ( isset( $theme_options['spacious_custom_css'] ) ) {
-					unset( $theme_options['spacious_custom_css'] );
-				}
-
-				// Finally, update spacious theme options.
-				update_option( $themename, $theme_options );
-			}
-		}
-	}
-}
-
-add_action( 'after_setup_theme', 'spacious_custom_css_migrate' );
-
-/**
  * Transfer header designs options to header display type.
  */
 function spacious_site_header_migrate() {
@@ -888,7 +734,7 @@ function spacious_site_header_migrate() {
 		return;
 	}
 
-	$spacious_header_design = spacious_options( 'spacious_header_design', 'style_one' );
+	$spacious_header_design = get_theme_mod( 'spacious_header_design', 'style_one' );
 
 	// Get theme options.
 	$theme_options = get_option( 'spacious' );
@@ -921,7 +767,7 @@ function spacious_site_footer_designs_eliminate() {
 		return;
 	}
 
-	$spacious_footer_design = spacious_options( 'spacious_footer_design', 'style_one' );
+	$spacious_footer_design = get_theme_mod( 'spacious_footer_design', 'style_one' );
 
 	if ( $spacious_footer_design ) {
 
@@ -1004,9 +850,9 @@ function spacious_header_display_type_migrate() {
 add_action( 'after_setup_theme', 'spacious_header_display_type_migrate' );
 
 function spacious_header_menu_button( $items, $args ) {
-	$button_text   = spacious_options( 'spacious_header_button_one_setting' );
-	$button_link   = spacious_options( 'spacious_header_button_one_link' );
-	$button_target = spacious_options( 'spacious_header_button_one_tab' );
+	$button_text   = get_theme_mod( 'spacious_header_button_one_setting' );
+	$button_link   = get_theme_mod( 'spacious_header_button_one_link' );
+	$button_target = get_theme_mod( 'spacious_header_button_one_tab' );
 	$button_target = $button_target ? ' target="_blank"' : '';
 
 	if ( 'primary' === $args->theme_location && $button_link ) {
@@ -1035,7 +881,7 @@ if ( ! function_exists( 'spacious_shift_extra_menu' ) ) :
 	 */
 	function spacious_shift_extra_menu( $items, $args ) {
 
-		if ( 'primary' === $args->theme_location && spacious_options( 'spacious_one_line_menu_setting', 0 ) ) :
+		if ( 'primary' === $args->theme_location && get_theme_mod( 'spacious_one_line_menu_setting', 0 ) ) :
 
 			$items .= '<li class="menu-item menu-item-has-children tg-menu-extras-wrap">';
 			$items .= '<span class="submenu-expand">';
@@ -1061,12 +907,12 @@ if ( ! function_exists( 'spacious_change_logo_attr' ) ) :
 
 	function spacious_change_logo_attr( $attr, $attachment, $size ) {
 		$custom_logo = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' );
-		$custom_logo = $custom_logo[0];
+		$custom_logo = isset( $custom_logo[0] ) ? $custom_logo[0] : '';
 
 		if ( isset( $attr['class'] ) && 'custom-logo' === $attr['class'] ) {
 
-			if ( 1 == spacious_options( 'spacious_different_retina_logo', 0 ) ) {
-				$retina_logo = spacious_options( 'spacious_retina_logo_upload' );
+			if ( 1 == get_theme_mod( 'spacious_different_retina_logo', 0 ) ) {
+				$retina_logo = get_theme_mod( 'spacious_retina_logo_upload' );
 
 				if ( $retina_logo ) {
 					$attr['srcset'] = $custom_logo . ' 1x, ' . $retina_logo . ' 2x';
@@ -1104,3 +950,4 @@ if ( ! function_exists( 'spacious_plugin_version_compare' ) ) {
 		return version_compare( $tdi_user_version, $version_to_compare, '<' );
 	}
 }
+

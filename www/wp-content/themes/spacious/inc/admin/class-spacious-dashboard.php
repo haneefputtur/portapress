@@ -21,16 +21,14 @@ class Spacious_Dashboard {
 
 	private function setup_hooks() {
 		add_action( 'admin_menu', array( $this, 'create_menu' ) );
-
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-	}
-
-	public function enqueue_scripts() {
-		wp_enqueue_style( 'spacious-admin-dashboard', get_template_directory_uri() . '/css/admin/dashboard.css' );
 	}
 
 	public function create_menu() {
-		$theme = wp_get_theme();
+		if ( is_child_theme() ) {
+			$theme = wp_get_theme()->parent();
+		} else {
+			$theme = wp_get_theme();
+		}
 
 		/* translators: %s: Theme Name. */
 		$theme_page_name = sprintf( esc_html__( '%s Options', 'spacious' ), $theme->Name );
@@ -40,22 +38,22 @@ class Spacious_Dashboard {
 			'option_page'
 		) );
 
-		add_action( 'admin_print_styles-' . $page, array( $this, 'enqueue_styles' ) );
-	}
-
-	public function enqueue_styles() {
-		wp_enqueue_style( 'spacious-dashboard', get_template_directory_uri() . '/css/admin/dashboard.css', array(), SPACIOUS_THEME_VERSION );
 	}
 
 	public function option_page() {
-		$theme = wp_get_theme();
+		if ( is_child_theme() ) {
+			$theme = wp_get_theme()->parent();
+		} else {
+			$theme = wp_get_theme();
+		}
+
 		?>
 		<div class="wrap">
 		<div class="spacious-header">
 			<h1>
 				<?php
 				/* translators: %s: Theme version. */
-				echo sprintf( esc_html__( 'Spacious %s', 'spacious' ), SPACIOUS_THEME_VERSION );
+				echo sprintf( esc_html__( 'Spacious %s', 'spacious' ), $theme->Version );
 				?>
 			</h1>
 		</div>

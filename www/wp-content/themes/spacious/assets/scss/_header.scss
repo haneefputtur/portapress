@@ -274,7 +274,6 @@ li.default-menu {
 			&.current-menu-ancestor a,
 			&.current_page_item a,
 			&.current-menu-ancestor > .sub-toggle,
-			&.current-menu-item > .sub-toggle,
 			&:hover > a,
 			&:hover > .sub-toggle {
 				color: #0FBE7C;
@@ -318,9 +317,6 @@ li.default-menu {
 				right: 10px;
 			}
 
-			> ul.spacious-menu--left {
-				left: -100%;
-			}
 		}
 
 		ul {
@@ -695,6 +691,30 @@ li.default-menu {
 			}
 		}
 	}
+
+	.menu-primary-container {
+
+		> ul {
+
+			> li {
+				.sub-menu {
+
+					li {
+
+						&.menu-item-has-children {
+
+							.sub-menu {
+
+								&.spacious-menu--left {
+									left: -100%;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 /* =SECONDARY MENUS
@@ -723,7 +743,6 @@ li.default-menu {
 		color: #666666;
 		display: block;
 		float: left;
-		font-size: 10px;
 		height: 21px;
 		padding: 5px 0 0 16px;
 		font-size: 12px;

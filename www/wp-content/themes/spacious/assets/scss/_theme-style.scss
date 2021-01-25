@@ -4,7 +4,9 @@ Theme URI: https://themegrill.com/themes/spacious
 Author: ThemeGrill
 Author URI: https://themegrill.com
 Description: Spacious is an incredibly spacious multipurpose responsive theme coded & designed with a lot of care and love. You can use it for your business, portfolio, blogging or any type of site. It has 4 page layouts, 2 page templates, 4 blog display types, 13 widgets areas, 5 custom widgets focusing on business template, awesome slider, primary color option to match your logo & website, boxed & wide layout, light & dark color skin, translation ready and many more. You can get free support in https://themegrill.com/support-forum/ and check the demo at https://demo.themegrill.com/spacious/.
-Version: 1.7.1
+Version: 1.9.0
+Tested up to: 5.5
+Requires PHP: 5.6
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, right-sidebar, left-sidebar, flexible-header, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, featured-images, theme-options, footer-widgets, blog, e-commerce, rtl-language-support
@@ -61,13 +63,15 @@ table {
 	width: 100%;
 }
 
-th {
+th,
+.wp-block-table th {
 	font-weight: bold;
 	border: 1px solid #EAEAEA;
 	padding: 6px 10px;
 }
 
-td {
+td,
+.wp-block-table td{
 	border: 1px solid #EAEAEA;
 	padding: 6px 10px;
 }
@@ -182,6 +186,7 @@ h4 {
 }
 
 h5 {
+
 	font-size: 22px;
 	line-height: 28px;
 }
@@ -191,11 +196,11 @@ h6 {
 	line-height: 25px;
 }
 
-hr {
-	border-color: #EAEAEA;
-	border-style: solid none none;
-	border-width: 1px 0 0;
-	height: 0;
+hr,
+.wp-block-separator {
+	background-color: #eaeaea;
+	border: 0;
+	height: 1px;
 	margin: 30px 0;
 }
 
@@ -223,9 +228,9 @@ pre {
 	overflow: auto;
 	padding: 20px;
 	border: 1px solid #EAEAEA;
-	font-family: "Courier 10 Pitch", Courier, monospace;
+	font-family: "Courier 10 Pitch",Courier,monospace;
 	font-size: 14px;
-	line-height: 19px;
+	line-height: 1.4;
 	white-space: pre-wrap;
 }
 
@@ -313,12 +318,14 @@ li > {
 /* =BLOCKQUOTE
 ----------------------------------------------- */
 
-blockquote {
+blockquote,
+.wp-block-quote,
+.wp-block-quote.is-style-large,
+.wp-block-quote.has-text-align-right {
 	font-style: italic;
 	font-weight: normal;
 	padding: 20px;
 	border: 1px solid #EAEAEA;
-	border-left: 3px solid #0FBE7C;
 	margin-bottom: 20px;
 
 	em, i {
@@ -339,7 +346,7 @@ blockquote {
 ----------------------------------------------- */
 
 input, textarea {
-	-webkit-border-radius: 0px;
+	-webkit-border-radius: 0;
 }
 
 input {
@@ -427,7 +434,7 @@ input.s {
 	appearance: none !important;
 	cursor: pointer;
 	background-color: #0FBE7C;
-	border: 0px;
+	border: 0;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
@@ -447,7 +454,7 @@ input {
 		appearance: none !important;
 		cursor: pointer;
 		background-color: #0FBE7C;
-		border: 0px;
+		border: 0;
 		-webkit-border-radius: 3px;
 		-moz-border-radius: 3px;
 		border-radius: 3px;
@@ -465,7 +472,7 @@ button {
 	appearance: none !important;
 	cursor: pointer;
 	background-color: #0FBE7C;
-	border: 0px;
+	border: 0;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
@@ -522,6 +529,7 @@ input {
 a {
 	color: #0FBE7C;
 	text-decoration: none;
+	transition: 0.5s all ease;
 
 	&:focus,
 	&:active,
@@ -637,41 +645,54 @@ img#wpstats {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+	text-align: center;
 }
 
 .no-sidebar-full-width,
 .no-sidebar {
 	overflow: hidden;
-
-	.alignfull {
-		// width: 100vw;
-		margin-left: calc(50% - 50vw);
-		margin-right: calc(50% - 50vw);
-		max-width: unset;
-
-		img {
-			max-width: unset;
+	#primary {
+		.entry-content {
+			> .alignfull {
+				margin-left: calc(50% - 50vw);
+				margin-right: calc(50% - 50vw);
+				max-width: unset;
+				&.wp-block-cover,
+				&.wp-block-cover-image
+				{
+					width: unset;
+				}
+			}
+			> .alignwide {
+				margin-left: -100px;
+				margin-right: -100px;
+				max-width: unset;
+			}
 		}
 	}
-
-	.alignwide {
-		margin-left: -100px;
-		margin-right: -100px;
-		max-width: unset;
-	}
-
 	&.narrow-978,
 	&.narrow-1218 {
-
 		#main {
 			overflow: hidden;
 		}
-
-		.alignwide {
-			margin-left: -10px;
-			margin-right: -10px;
+		#primary {
+			.entry-content {
+				> .alignfull {
+					margin-left: -25px;
+					margin-right: -25px;
+					&.wp-block-cover,
+					&.wp-block-cover-image
+					{
+						width: unset;
+					}
+				}
+				> .alignwide {
+					margin-left: -25px;
+					margin-right: -25px;
+					max-width: unset;
+				}
+			}
 		}
-
 	}
 }
 
@@ -790,18 +811,16 @@ body {
 	.entry-description-container {
 		background-color: #555555;
 		background-color: rgba(0, 0, 0, 0.3);
-		padding: 10px 15px;
 		padding: 1rem 1.5rem;
 	}
 
 	img {
-		margin-bottom: 0px;
+		margin-bottom: 0;
 	}
 
 	.slider-title-head {
 		display: inline-block;
 		left: 0;
-		margin-bottom: 5px;
 		margin-bottom: 0.5rem;
 	}
 
@@ -824,7 +843,6 @@ body {
 
 	.entry-content {
 		color: #FFFFFF;
-		padding-top: 5px;
 		padding-top: 0.5rem;
 
 		p {
@@ -838,7 +856,6 @@ body {
 		color: #FFFFFF;
 		text-align: center;
 		font-family: 'Lato', sans-serif;
-		padding: 10px 15px;
 		padding: 1rem 1.5rem;
 		float: left;
 		margin-top: 15px;
@@ -987,7 +1004,7 @@ body {
 	float: left;
 	width: 28.407225%;
 	margin: 0 2.46305419%;
-	padding: 0px 0px 30px;
+	padding: 0 0 30px;
 
 	#colophon & {
 		width: 31.7405583%;
@@ -1005,30 +1022,30 @@ body {
 	float: left;
 	width: 23.1527094%;
 	margin: 0 2.46305419% 0 0;
-	padding: 0px 0px 30px;
+	padding: 0 0 30px;
 }
 
 .tg-one-fourth-last {
-	margin: 0px;
+	margin: 0;
 }
 
 .tg-one-half {
 	float: left;
 	width: 48.7684729%;
 	margin: 0 2.46305419% 0 0;
-	padding: 0px 0px 30px;
+	padding: 0 0 30px;
 }
 
 .tg-one-half-last {
 	float: right;
-	margin: 0px;
+	margin: 0;
 }
 
 .widget_recent_work {
 	margin-bottom: 20px;
 
 	img {
-		margin-bottom: 0px;
+		margin-bottom: 0;
 	}
 
 	.tg-one-half,
@@ -1074,7 +1091,7 @@ body {
 
 	.service-image {
 		text-align: left;
-		padding-bottom: 0px;
+		padding-bottom: 0;
 	}
 }
 
@@ -1149,7 +1166,7 @@ body {
 		&:last-child {
 			float: right;
 			border-left: 0 none;
-			padding-right: 0px !important;
+			padding-right: 0 !important;
 		}
 	}
 }
@@ -1248,7 +1265,7 @@ body {
 		overflow: hidden;
 
 		p {
-			margin-bottom: 0px;
+			margin-bottom: 0;
 		}
 	}
 
@@ -1444,6 +1461,27 @@ body {
 	padding: 5px 5px;
 }
 
+.wp-block-gallery ul.blocks-gallery-grid,
+ul.wp-block-gallery {
+	padding: 0;
+
+	img {
+		margin-bottom: 0;
+	}
+}
+
+/* Gutenberg Blocks Layout.
+--------------------------------------------------------------*/
+.wp-block-gallery,
+.wp-block-social-links {
+
+	&.alignleft,
+	&.alignright,
+	&.aligncenter {
+		display: flex;
+	}
+}
+
 /* =COMMENTS
 ----------------------------------------------- */
 
@@ -1592,7 +1630,6 @@ body {
 .comment-list {
 	list-style-type: none;
 	padding: 0;
-	margin-bottom: 34px;
 	margin-bottom: 3.4rem;
 
 	.children {
@@ -1622,7 +1659,6 @@ body {
 		clip-path: none;
 		color: #21759b;
 		display: block;
-		font-size: 0.875rem;
 		font-size: 14px;
 		font-weight: bold;
 		height: auto;
@@ -1671,16 +1707,13 @@ body {
 		line-height: 1.5;
 
 		#cancel-comment-reply-link {
-			margin-left: 10px;
 			margin-left: 1rem;
 			font-weight: normal;
-			font-size: 16px;
 			font-size: 1.6rem;
 		}
 	}
 
 	form {
-		margin: 24px 0;
 		margin: 2.4rem 0;
 
 		.comment-form-cookies-consent {
@@ -1693,11 +1726,9 @@ body {
 		}
 
 		p {
-			margin: 11px 0;
 			margin: 1.1rem 0;
 
 			&.logged-in-as {
-				margin-bottom: 16px;
 				margin-bottom: 1.6rem;
 			}
 		}
@@ -1719,7 +1750,6 @@ body {
 
 		p.form-allowed-tags {
 			margin: 0;
-			font-size: 15px;
 			font-size: 1.5rem;
 			line-height: 1.5;
 			color: #5e5e5e;
@@ -2240,7 +2270,7 @@ iframe#wp-custom-header-video {
 	margin: auto;
 	width: 62px;
 	height: 50px;
-	font: 0px/0 a;
+	font: 0/0 a;
 	-moz-transition: all 0.5s;
 	-o-transition: all 0.5s;
 	-webkit-transition: all 0.5s;
